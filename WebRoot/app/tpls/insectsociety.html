@@ -1,0 +1,11 @@
+<h3>各地虫协</h3>
+<div ng-controller='EditInset' id="EditInset">
+	<div class="input-group mt10">
+	  <input class="form-control" aria-describedby="basic-addon1" ng-model="postArticle"></input>
+	</div>
+	<button class="btn btn-primary mt10" ng-click="add()">添加</button>
+	<div class="input-group mt10" ng-repeat="article in articles" >
+	  <label class="form-control" aria-describedby="basic-addon1">{{article.title}}</label>
+	  <span class="input-group-addon span-pointer" ng-click="remove($index,article.id)">X</span>
+	</div>
+</div>

@@ -1,0 +1,102 @@
+body {
+	text-align: center;
+	font-size: 9pt;
+	color: #636363;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	line-height: 1.5em;
+	background-color: #f1f1f1;
+}
+table {
+	font-size: 9pt;
+}
+td{
+	font-size: 9pt;
+}
+
+/* ---标准链接样式--- */
+a:link {
+	font-size: 9pt;
+	text-decoration: none;	
+	
+	text-align: justify;
+	line-height: 1.5em;
+}
+a:visited {
+    font-size: 9pt;
+	text-decoration: none;
+	color:#636363;
+	line-height: 1.5em;
+	text-align: justify;
+}
+a:hover {
+    font-size: 9pt;
+	color: #999933;	
+	text-decoration: none; 
+	line-height: 1.5em;
+	text-align: justify;
+}
+a:active {
+    font-size: 9pt;
+	text-decoration: none; 
+	color:#636363;
+	line-height: 1.5em;
+	text-align: justify;
+}
+
+
+/* ---最大的div容器--- */
+.container_page {
+	width: 1008px;
+	text-align: left;
+	min-height: 100%; /* For IE */
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	
+}
+.xueyuannews tr td{
+	line-height:2em;
+}
+.content1{
+	
+	margin-top:10px;
+}
+
+.content2{
+	clear:both;
+	padding-top:40px;
+}
+.footer{
+	text-align:center;
+padding-top:20px;
+	clear:both;
+}
+#banner{
+
+	margin-top:0px;
+}
+
+.biaoti1
+{
+	color: #FFFFFF;
+	font-family: "宋体";
+	font-size: 13px;
+	font-weight: bold;
+}
+	
+	
+.banner-list ul li a:hover,.crumb p a:hover,.box-content ul li a:hover,.new-content ul li a:hover,.article-list ul li a:hover{text-decoration:none}
+.banner-list{height:30px;background-color:#1874CD;}
+.banner-list ul{margin-left:25px;}
+.banner-list ul li{float:left;margin-right:18px;list-style-type:none;}
+.banner-list ul li:last-child{margin-right:0}
+.banner-list ul li a{line-height:30px;color:#fff;font-size:15px;font-family:Arial;text-decoration:none}
+.banner-list ul li a:hover{text-decoration:underline}
+
+
+
+

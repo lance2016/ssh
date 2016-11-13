@@ -1,0 +1,13 @@
+<!--这里是新闻头条-->
+<h3>新闻头条</h3>
+<div ng-controller='LoadHeadline'>
+	<p>当前头条：{{topNew}}</p>
+	<table class="table mt30">	
+		<tr ng-repeat="new in news">
+			<td>{{new.title}}</td>
+			<td>{{new.time}}</td>
+			<td><a ng-click="setTopNews(new.id)">设置</a></td>
+		</tr>
+	</table>
+	<button class="btn btn-info" ng-click="loadMoreNews()">加载更多</button>
+</div>

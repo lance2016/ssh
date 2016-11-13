@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="list-group" ng-controller="changeBgColor">
+                    <a ui-sref="#" class="list-group-item active" >首页管理</a>
+                    <a ui-sref="index.indexconfig.headline" class="list-group-item a-bgcolor" ng-click="change($event)">新闻头条</a>
+                    <a ui-sref="index.indexconfig.journal" class="list-group-item a-bgcolor" ng-click="change($event)">虫业通讯刊物</a>
+                    <a ui-sref="index.indexconfig.council" class="list-group-item a-bgcolor" ng-click="change($event)">理事会成员</a>  
+                    <a ui-sref="index.indexconfig.managingdirector" class="list-group-item a-bgcolor" ng-click="change($event)">常务理事单位</a>  
+                    <a ui-sref="index.indexconfig.insectsociety" class="list-group-item a-bgcolor" ng-click="change($event)">各地虫协</a>  
+		            <a ui-sref="index.indexconfig.picturecarousel" class="list-group-item a-bgcolor" ng-click="change($event)">图片轮播</a>
+				</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div ui-view></div>
+    </div>
+</div>
