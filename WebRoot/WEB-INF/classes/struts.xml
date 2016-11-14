@@ -8,7 +8,11 @@
    	<global-results>
    	     <result name="updatesuccess" type="redirectAction">user_query</result>
 		 <result name="error" >/error.jsp</result>
-	</global-results>       
+	</global-results>  
+	 
+	<action name="init" class="initAction" method="initindex">
+		   <result name="querysuccess">/front/index.jsp</result>	 
+	</action>
      <action name="book_*" class="bookAction"  method="{1}" >
        <result name="querysuccess">/index.jsp</result>	    
      </action>
@@ -16,7 +20,11 @@
        <result name="querysuccess">/front/index.jsp</result>	    
      </action>
       <action name="user_*" class="userAction"  method="{1}" >
-       <result name="querysuccess">/show.jsp</result>	    
+       <result name="querysuccess">/front/index.jsp</result>	    
+     </action>
+     
+      <action name="xue_*" class="xueYuanNewsAction"  method="{1}" >
+       <result name="querysuccess">/front/index.jsp</result>	    
      </action>
     </package> 
 </struts> 

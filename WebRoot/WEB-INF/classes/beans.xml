@@ -42,6 +42,8 @@
 		  <list>
 		       <value>vo/Nav.hbm.xml</value>  
 		       <value>vo/User.hbm.xml</value>  
+		       <value>vo/XueYuanNews.hbm.xml</value>  
+		       <value>vo/Inform.hbm.xml</value>
 		   </list>    
 		</property>
 		

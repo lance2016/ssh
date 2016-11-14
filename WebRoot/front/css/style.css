@@ -58,17 +58,43 @@ a:active {
 	margin-left: auto;
 	
 }
-.xueyuannews tr td{
-	line-height:2em;
+
+.xueyuantime{
+	font-size:14px;
+	line-height:20px;
+	text-align:right;
 }
+
+.xueyuandiv{
+font-size:14px;
+line-height:20px;
+width:280px; 
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+ }
+ 
+.otherdiv{
+font-size:14px;
+line-height:20px;
+width:230px; 
+white-space:nowrap; 
+text-overflow:ellipsis; 
+-o-text-overflow:ellipsis; 
+overflow: hidden; 
+}
+ 
 .content1{
-	
 	margin-top:10px;
 }
 
 .content2{
 	clear:both;
 	padding-top:40px;
+}
+.xueyuana a{
+	text-decoration:none;
 }
 .footer{
 	text-align:center;

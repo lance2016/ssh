@@ -82,15 +82,9 @@
 			</table>	
 			<table class="xueyuannews">
 				<ul>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
-					<tr><td align="left" width="80%"><li><a>我校学子在第三届全国高校物联网应用...</a></li></td><td align="right">2016-11-13</td></tr>
+					<c:forEach var="m" items="${xueYuanNewsList}">
+					<tr><td align="left" width="300px"><li><a href="#" class="xueyuana"><div class="xueyuandiv">${m.title}</div></a></li></td><td width="20%">${m.time}</td></tr>
+					</c:forEach>
 				</ul>
 			</table>
 		</div>
@@ -109,16 +103,14 @@
 				    </td>
   				</tr>
 			</table>
+			
+
+		<!-- 学院动态 -->
 			<table class="inform">		
 				<ul>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
+					<c:forEach var="inform" items="${informList}">
+					<tr><td align="left" width="90%"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					</c:forEach>
 				</ul>
 			</table>	
 		</div>
@@ -135,16 +127,12 @@
 				    </td>
   				</tr>
 			</table>
+		
 			<table class="inform">		
 				<ul>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
+					<c:forEach var="inform" items="${informList}">
+					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					</c:forEach>
 				</ul>
 			</table>	
 		</div>
@@ -163,16 +151,11 @@
 			</table>
 			<table class="inform">		
 				<ul>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
+					<c:forEach var="inform" items="${informList}">
+					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					</c:forEach>
 				</ul>
-			</table>		
+			</table>	
 		</div>
 		<div class="col-md-3">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
@@ -189,33 +172,29 @@
 			</table>
 			<table class="inform">		
 				<ul>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
-					<tr><td align="left" width="90%"><li><a>我校学子在第三届全国高校...</a></li></td></tr>
+					<c:forEach var="inform" items="${informList}">
+					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					</c:forEach>
 				</ul>
-			</table>		
+			</table>	
 		</div>
 		
 	</div>
 	
 
 	<div class="footer">
-		<h3>this is footer</h3>1234
 		<div id="banner" class="banner-list ">
 				<ul>
 					<c:forEach var="m" items="${userList}">
 						<li><a href="${pageContext.request.contextPath}/lookMore.action?id=${m.id}" style="text-decoration:none">${m.username}</a></li>
 					</c:forEach>
 				</ul>
-	</div>	
+	</div>
+	
+	
 	</div>
 	
 </div>
-
+  
 </body>
 </html>
