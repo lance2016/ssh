@@ -83,13 +83,22 @@
 			<table class="xueyuannews">
 				<ul>
 					<c:forEach var="m" items="${xueYuanNewsList}">
-					<tr><td align="left" width="300px"><li><a href="#" class="xueyuana"><div class="xueyuandiv">${m.title}</div></a></li></td><td width="20%">${m.time}</td></tr>
+					<tr><td align="left" width="300px"><li><a href="#" class="xueyuana"><div class="xueyuandiv"
+					
+							<c:if test="${m.important==1}">
+										style="color:red";
+									</c:if>
+					
+					>${m.title}</div></a></li></td><td width="20%">${m.time}</td></tr>
 					</c:forEach>
 				</ul>
 			</table>
 		</div>
 	</div>
 	<div class="content2">
+	
+	
+	<!-- 通知公告 -->
 		<div class="col-md-3">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
@@ -105,15 +114,25 @@
 			</table>
 			
 
-		<!-- 学院动态 -->
+		
 			<table class="inform">		
 				<ul>
 					<c:forEach var="inform" items="${informList}">
-					<tr><td align="left" width="90%"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					<tr><td align="left" width="90%"><li><a href="#" class="xueyuana"><div class="otherdiv"
+						<c:if test="${inform.important==1}">
+										style="color:red";
+									</c:if>
+						
+					>${inform.title}</div></a></li></td></tr>
 					</c:forEach>
 				</ul>
 			</table>	
 		</div>
+		
+		
+		
+		
+		<!-- 学生工作 -->
 		<div class="col-md-3">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
@@ -128,14 +147,23 @@
   				</tr>
 			</table>
 		
-			<table class="inform">		
+			<table class="studentwork">		
 				<ul>
-					<c:forEach var="inform" items="${informList}">
-					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					<c:forEach var="s" items="${studentWorkList}">
+					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv"
+						<c:if test="${s.important==1}">
+										style="color:red";
+									</c:if>
+					>${s.title}</div></a></li></td></tr>
 					</c:forEach>
 				</ul>
 			</table>	
+			
 		</div>
+		
+		
+		
+		<!--就业工作  -->
 		<div class="col-md-3">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
@@ -149,14 +177,31 @@
 				    </td>
   				</tr>
 			</table>
-			<table class="inform">		
+			<table class="work">		
 				<ul>
-					<c:forEach var="inform" items="${informList}">
-					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					<c:forEach var="work" items="${workList}">
+					<tr>
+						<td align="left" width="200px">
+							<li>
+							<a href="#" class="xueyuana">
+								<div class="otherdiv" 
+									<c:if test="${work.important==1}">
+										style="color:red";
+									</c:if>
+								>
+								${work.title}
+								</div>
+							</a>
+							</li>
+						</td>
+					</tr>
 					</c:forEach>
 				</ul>
 			</table>	
 		</div>
+		
+		
+		<!--学术动态  -->
 		<div class="col-md-3">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
@@ -170,10 +215,23 @@
 				    </td>
   				</tr>
 			</table>
-			<table class="inform">		
+			<table class="xueshunews">		
 				<ul>
-					<c:forEach var="inform" items="${informList}">
-					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv">${inform.title}</div></a></li></td></tr>
+					<c:forEach var="xueshu" items="${xueShuNewsList}">
+					<tr>
+						<td align="left" width="200px">
+							<li>
+								<a href="#" class="xueyuana">
+									<div class="otherdiv" 
+										<c:if test="${xueshu.important==1}">
+											style="color:red";
+										 </c:if> 
+									>${xueshu.title}
+									</div>
+								</a>
+							</li>
+						</td>
+					</tr>
 					</c:forEach>
 				</ul>
 			</table>	

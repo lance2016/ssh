@@ -26,5 +26,9 @@
       <action name="xue_*" class="xueYuanNewsAction"  method="{1}" >
        <result name="querysuccess">/front/index.jsp</result>	    
      </action>
+     
+     <action name="stu_*" class="studentWorkAction"  method="{1}" >
+       <result name="querysuccess">/front/index.jsp</result>	    
+     </action>
     </package> 
 </struts> 

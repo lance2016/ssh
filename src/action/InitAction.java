@@ -9,11 +9,17 @@ import org.springframework.stereotype.Controller;
 
 import service.IInformService;
 import service.INavService;
+import service.IStudentWorkService;
 import service.IUserService;
+import service.IWorkService;
+import service.IXueShuNewsService;
 import service.IXueYuanNewsService;
 import vo.Inform;
 import vo.Nav;
+import vo.StudentWork;
 import vo.User;
+import vo.Work;
+import vo.XueShuNews;
 import vo.XueYuanNews;
 @Controller
 @Scope("request")
@@ -26,10 +32,20 @@ public class InitAction {
     IXueYuanNewsService XueYuanNewsService;
     @Resource
     IInformService InformService;
+    @Resource
+    IStudentWorkService StudentWorkService;
+    @Resource
+    IWorkService WorkService;
+    @Resource
+    IXueShuNewsService XueShuNewsService;
+    
     List<Nav> NavList;
     List<User> UserList;
     List<XueYuanNews> XueYuanNewsList;
     List<Inform>InformList;
+    List<StudentWork>StudentWorkList;
+    List<Work>WorkList;
+    List<XueShuNews>XueShuNewsList;
     Nav Nav;
 	User User;
 	int id;
@@ -118,6 +134,63 @@ public class InitAction {
 		InformList = informList;
 	}
 
+	public IInformService getInformService() {
+		return InformService;
+	}
+
+	public void setInformService(IInformService informService) {
+		InformService = informService;
+	}
+
+	public IStudentWorkService getStudentWorkService() {
+		return StudentWorkService;
+	}
+
+	public void setStudentWorkService(IStudentWorkService studentWorkService) {
+		StudentWorkService = studentWorkService;
+	}
+
+	public List<StudentWork> getStudentWorkList() {
+		return StudentWorkList;
+	}
+
+	public void setStudentWorkList(List<StudentWork> studentWorkList) {
+		StudentWorkList = studentWorkList;
+	}
+
+	public IWorkService getWorkService() {
+		return WorkService;
+	}
+
+	public void setWorkService(IWorkService workService) {
+		WorkService = workService;
+	}
+
+	public List<Work> getWorkList() {
+		return WorkList;
+	}
+
+	public void setWorkList(List<Work> workList) {
+		WorkList = workList;
+	}
+
+	
+	public IXueShuNewsService getXueShuNewsService() {
+		return XueShuNewsService;
+	}
+
+	public void setXueShuNewsService(IXueShuNewsService xueShuNewsService) {
+		XueShuNewsService = xueShuNewsService;
+	}
+
+	public List<XueShuNews> getXueShuNewsList() {
+		return XueShuNewsList;
+	}
+
+	public void setXueShuNewsList(List<XueShuNews> xueShuNewsList) {
+		XueShuNewsList = xueShuNewsList;
+	}
+
 	public String add() {
 
 		try {
@@ -156,10 +229,13 @@ public class InitAction {
 	public String initindex() {
 
 		try {
-			//UserList = UserService.query();
+			UserList = UserService.query();
 			NavList=NavService.query();//导航栏
 			XueYuanNewsList = XueYuanNewsService.query();//学院动态
 			InformList=InformService.query();//通知公告
+			StudentWorkList=StudentWorkService.query();//学生工作
+			WorkList=WorkService.query();//就业工作
+			XueShuNewsList=XueShuNewsService.query();//学术动态
 			return "querysuccess";
 		} catch (Exception e) {
 			e.printStackTrace();

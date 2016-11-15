@@ -44,6 +44,9 @@
 		       <value>vo/User.hbm.xml</value>  
 		       <value>vo/XueYuanNews.hbm.xml</value>  
 		       <value>vo/Inform.hbm.xml</value>
+		        <value>vo/StudentWork.hbm.xml</value>
+		         <value>vo/Work.hbm.xml</value>
+		          <value>vo/XueShuNews.hbm.xml</value>
 		   </list>    
 		</property>
 		
