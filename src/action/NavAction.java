@@ -12,7 +12,7 @@ public class NavAction {
     @Resource
 	INavService NavService;
 	Nav Nav;
-	int id;
+	String id;
 	List<Nav> NavList;
 
 	public Nav getNav() {
@@ -33,11 +33,13 @@ public class NavAction {
 		this.NavService = NavService;
 	}
 
-	public int getId() {
+	
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

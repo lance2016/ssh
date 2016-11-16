@@ -1,10 +1,13 @@
 package vo;
-public class XueYuanNews {
+public class AllContent {
 	private int Id;
 	private String title;
 	private String content;
+	private String link;
 	private String time;
 	private String important;
+	private int visitedtime;
+	private String parentid;
 	public int getId() {
 		return Id;
 	}
@@ -23,6 +26,12 @@ public class XueYuanNews {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
+	}
 	public String getTime() {
 		return time;
 	}
@@ -35,6 +44,19 @@ public class XueYuanNews {
 	public void setImportant(String important) {
 		this.important = important;
 	}
+	public int getVisitedtime() {
+		return visitedtime;
+	}
+	public void setVisitedtime(int visitedtime) {
+		this.visitedtime = visitedtime;
+	}
+	public String getParentid() {
+		return parentid;
+	}
+	public void setParentid(String parentid) {
+		this.parentid = parentid;
+	}
+	
 	
 	
 }

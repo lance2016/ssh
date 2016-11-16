@@ -10,6 +10,9 @@
 		 <result name="error" >/error.jsp</result>
 	</global-results>  
 	 
+	 <action name="querycontent" class="allContentAction" method="query">
+	 	<result name="querysuccess">/front/index.jsp</result>
+	 </action>
 	<action name="init" class="initAction" method="initindex">
 		   <result name="querysuccess">/front/index.jsp</result>	 
 	</action>
@@ -29,6 +32,15 @@
      
      <action name="stu_*" class="studentWorkAction"  method="{1}" >
        <result name="querysuccess">/front/index.jsp</result>	    
+     </action>
+     
+     <!-- 二级页面 -->
+     <action name="qsf_*" class="querySecondPageAction" method="{1}">
+     	<result name="querysecondsuccess">/front/second.jsp</result>
+     </action>
+     <!-- 三级页面 -->
+     <action name="qf_*" class="queryThirdPageAction" method="{1}">
+     	<result name="querythirdsuccess">/front/third.jsp</result>
      </action>
     </package> 
 </struts> 

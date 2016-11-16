@@ -4,33 +4,33 @@ import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import service.IUserService;
-import vo.User;
+import service.IAllContentService;
+import vo.AllContent;
 @Controller
 @Scope("request")
-public class UserAction {
+public class AllContentAction {
     @Resource
-	IUserService UserService;
-	User User;
+	IAllContentService AllContentService;
+	AllContent AllContent;
 	int id;
-	List<User> UserList;
+	List<AllContent> AllContentList;
 
-	public User getUser() {
-		return User;
+	public AllContent getAllContent() {
+		return AllContent;
 	}
 
-	public void setUser(User User) {
-		this.User = User;
+	public void setAllContent(AllContent AllContent) {
+		this.AllContent = AllContent;
 	}
 
 	
 
-	public IUserService getUserService() {
-		return UserService;
+	public IAllContentService getAllContentService() {
+		return AllContentService;
 	}
 
-	public void setUserService(IUserService UserService) {
-		this.UserService = UserService;
+	public void setAllContentService(IAllContentService AllContentService) {
+		this.AllContentService = AllContentService;
 	}
 
 	public int getId() {
@@ -41,18 +41,18 @@ public class UserAction {
 		this.id = id;
 	}
 
-	public List<User> getUserList() {
-		return UserList;
+	public List<AllContent> getAllContentList() {
+		return AllContentList;
 	}
 
-	public void setUserList(List<User> UserList) {
-		this.UserList = UserList;
+	public void setAllContentList(List<AllContent> AllContentList) {
+		this.AllContentList = AllContentList;
 	}
 
 	public String add() {
 
 		try {
-			UserService.add(User);
+			AllContentService.add(AllContent);
 			return "updatesuccess";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,7 +64,7 @@ public class UserAction {
 	public String update() {
 
 		try {
-			UserService.update(User);
+			AllContentService.update(AllContent);
 			return "updatesuccess";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class UserAction {
 	public String delete() {
 
 		try {
-			UserService.delete(id);
+			AllContentService.delete(id);
 			return "updatesuccess";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -86,9 +86,8 @@ public class UserAction {
 	}
 
 	public String query() {
-
 		try {
-			UserList = UserService.query();
+			AllContentList = AllContentService.query();
 			return "querysuccess";
 		} catch (Exception e) {
 			e.printStackTrace();

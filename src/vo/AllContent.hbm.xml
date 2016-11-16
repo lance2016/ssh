@@ -3,13 +3,16 @@
 	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="vo">
-<class name="XueYuanNews" table="xueyuannews">
+<class name="AllContent" table="allcontent">
  <id name="Id">
   <generator class="native" />
  </id>
  <property name="title"/>
  <property name="content" />
+  <property name="link" />
  <property name="time" />
+ <property name="visitedtime" />
   <property name="important" />
+  <property name="parentid" />
 </class>
 </hibernate-mapping>

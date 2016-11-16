@@ -74,7 +74,13 @@ text-overflow:ellipsis;
 -o-text-overflow:ellipsis; 
 overflow: hidden; 
  }
- 
+
+.thirdcontent{
+	font-size:14px;
+	color:red;
+}
+
+
 .otherdiv{
 font-size:14px;
 line-height:20px;
@@ -84,7 +90,7 @@ text-overflow:ellipsis;
 -o-text-overflow:ellipsis; 
 overflow: hidden; 
 }
- 
+
 .content1{
 	margin-top:10px;
 }
@@ -102,8 +108,11 @@ padding-top:20px;
 	clear:both;
 }
 #banner{
-
 	margin-top:0px;
+}
+#foot{
+	padding:10px;
+	height:60px;
 }
 
 .biaoti1
@@ -113,7 +122,8 @@ padding-top:20px;
 	font-size: 13px;
 	font-weight: bold;
 }
-	
+
+
 	
 .banner-list ul li a:hover,.crumb p a:hover,.box-content ul li a:hover,.new-content ul li a:hover,.article-list ul li a:hover{text-decoration:none}
 .banner-list{height:30px;background-color:#1874CD;}

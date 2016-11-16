@@ -1,11 +1,12 @@
 package vo;
 public class Nav {
-	private int Id;
+	private String Id;
 	private String name;
-	public int getId() {
+	private String parentid;
+	public String getId() {
 		return Id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		Id = id;
 	}
 	public String getName() {
@@ -13,6 +14,12 @@ public class Nav {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getParentid() {
+		return parentid;
+	}
+	public void setParentid(String parentid) {
+		this.parentid = parentid;
 	}
 	
 }

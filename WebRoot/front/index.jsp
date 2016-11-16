@@ -18,9 +18,11 @@
 	</div>
 
 	<div id="banner" class="banner-list ">
+			
 				<ul>
+					<li><a href="#" style="text-decoration:none">首页</a></li>
 					<c:forEach var="aa" items="${navList}">
-						<li><a href="${pageContext.request.contextPath}/lookMore.action?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
+						<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
 					</c:forEach>
 				</ul>
 	</div>	
@@ -66,24 +68,25 @@
 			</div> 
 
 		</div>
-		
+			<!-- 学院动态 -->
 		<div class="col-md-5">
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">学院动态</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList1.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="http://xinxi.sdau.edu.cn/s/50/t/2108/p/22/list.htm" target="_self">
+				    	<div align="right"><a href="qsf_query?id=o" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
   				</tr>
 			</table>	
+			
 			<table class="xueyuannews">
 				<ul>
-					<c:forEach var="m" items="${xueYuanNewsList}">
-					<tr><td align="left" width="300px"><li><a href="#" class="xueyuana"><div class="xueyuandiv"
+					<c:forEach var="m" items="${allContentList1}">
+					<tr><td align="left" width="300px"><li><a href="qf_query?id=${m.id}" class="xueyuana"><div class="xueyuandiv"
 					
 							<c:if test="${m.important==1}">
 										style="color:red";
@@ -103,10 +106,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">通知公告</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList2.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="http://xinxi.sdau.edu.cn/s/50/t/2108/p/22/list.htm" target="_self">
+				    	<div align="right"><a href="qsf_query?id=p" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -117,8 +120,8 @@
 		
 			<table class="inform">		
 				<ul>
-					<c:forEach var="inform" items="${informList}">
-					<tr><td align="left" width="90%"><li><a href="#" class="xueyuana"><div class="otherdiv"
+					<c:forEach var="inform" items="${allContentList2}">
+					<tr><td align="left" width="90%"><li><a href="qf_query?id=${inform.id}" class="xueyuana"><div class="otherdiv"
 						<c:if test="${inform.important==1}">
 										style="color:red";
 									</c:if>
@@ -137,10 +140,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">学生工作</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList3.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="http://xinxi.sdau.edu.cn/s/50/t/2108/p/22/list.htm" target="_self">
+				    	<div align="right"><a href="qsf_query?id=q" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -149,8 +152,8 @@
 		
 			<table class="studentwork">		
 				<ul>
-					<c:forEach var="s" items="${studentWorkList}">
-					<tr><td align="left" width="200px"><li><a href="#" class="xueyuana"><div class="otherdiv"
+					<c:forEach var="s" items="${allContentList3}">
+					<tr><td align="left" width="200px"><li><a href="qf_query?id=${s.id}" class="xueyuana"><div class="otherdiv"
 						<c:if test="${s.important==1}">
 										style="color:red";
 									</c:if>
@@ -168,10 +171,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">就业工作</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList4.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="http://xinxi.sdau.edu.cn/s/50/t/2108/p/22/list.htm" target="_self">
+				    	<div align="right"><a href="qsf_query?id=r" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -179,11 +182,11 @@
 			</table>
 			<table class="work">		
 				<ul>
-					<c:forEach var="work" items="${workList}">
+					<c:forEach var="work" items="${allContentList4}">
 					<tr>
 						<td align="left" width="200px">
 							<li>
-							<a href="#" class="xueyuana">
+							<a href="qf_query?id=${work.id}" class="xueyuana">
 								<div class="otherdiv" 
 									<c:if test="${work.important==1}">
 										style="color:red";
@@ -206,10 +209,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">学术动态</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList5.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="http://xinxi.sdau.edu.cn/s/50/t/2108/p/22/list.htm" target="_self">
+				    	<div align="right"><a href="qsf_query?id=s" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -217,11 +220,11 @@
 			</table>
 			<table class="xueshunews">		
 				<ul>
-					<c:forEach var="xueshu" items="${xueShuNewsList}">
+					<c:forEach var="xueshu" items="${allContentList5}">
 					<tr>
 						<td align="left" width="200px">
 							<li>
-								<a href="#" class="xueyuana">
+								<a href="qf_query?id=${xueshu.id}" class="xueyuana">
 									<div class="otherdiv" 
 										<c:if test="${xueshu.important==1}">
 											style="color:red";
@@ -240,13 +243,13 @@
 	</div>
 	
 
-	<div class="footer">
-		<div id="banner" class="banner-list ">
-				<ul>
-					<c:forEach var="m" items="${userList}">
-						<li><a href="${pageContext.request.contextPath}/lookMore.action?id=${m.id}" style="text-decoration:none">${m.username}</a></li>
-					</c:forEach>
-				</ul>
+	<div class="footer" >
+		<div id="foot" class="banner-list ">
+		<div class="text-center" style="color:white;font-size:14px;">
+			Copyright © 山东农业大学信息科学与工程学院   <span><a href="app/index.html" style="color:red">管理入口</a></span> <br/> 
+			地址:文理大楼1201 邮编:271018  |  技术支持：陈飞龙</br>　
+		</div>
+				
 	</div>
 	
 	
