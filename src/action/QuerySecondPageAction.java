@@ -1,21 +1,24 @@
 package action;
 
+
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+
 
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.opensymphony.xwork2.ActionContext;
+
 
 import service.IAllContentService;
 import service.INavService;
 import vo.AllContent;
 import vo.Nav;
-
 
 @Controller
 @Scope("request")
@@ -31,8 +34,10 @@ public class QuerySecondPageAction {
 	   List<Nav> LocationList;
 	   List<AllContent>AllContentList;
 	   private static String id;
+	   Nav Nav;
 	   String leftid;
-	   
+	   private String result;
+	   private Map<String, Object> dataMap;  
 		public String query() {
 			 id=request.getParameter("id");
 			// System.out.println("id="+id);
@@ -52,8 +57,6 @@ public class QuerySecondPageAction {
 		public String changequery() {
 			leftid=request.getParameter("leftid");//左侧选择的id
 			try {
-					System.out.println(id);
-					System.out.println(leftid);
 					NavList = NavService.query();//导航栏
 					NavLeftList=NavService.querybyparentid(id);
 					LocationList=NavService.queryone(leftid);
@@ -66,8 +69,62 @@ public class QuerySecondPageAction {
 			}
 
 		}
-
 		
+//		public String list() throws IOException{
+////			  HttpServletResponse response=ServletActionContext.getResponse();  
+//	
+//				id=request.getParameter("id");
+//			  Map<String,Object> map = new HashMap<String,Object>();
+////			  Nav nav = new Nav();
+////			  nav.setId("thisisid");
+////			  nav.setName("this is name");
+////			  nav.setParentid("parentid");
+//			  try {
+//					AllContentList= AllContentService.querybyparentid(id);//导航栏
+//				} catch (Exception e) {
+//						e.printStackTrace();
+//					
+//				}
+//			     map.put("AllContentList", AllContentList);         
+//		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+//		        result = json.toString();//给result赋值，传递给页
+//		System.out.println(result);
+//		
+//		return "success";
+//		}
+		
+
+		public String getResult() {
+			return result;
+		}
+
+		public void setResult(String result) {
+			this.result = result;
+		}
+
+		public HttpServletRequest getRequest() {
+			return request;
+		}
+
+		public void setRequest(HttpServletRequest request) {
+			this.request = request;
+		}
+
+		public Map<String, Object> getDataMap() {
+			return dataMap;
+		}
+
+		public void setDataMap(Map<String, Object> dataMap) {
+			this.dataMap = dataMap;
+		}
+
+		public Nav getNav() {
+			return Nav;
+		}
+
+		public void setNav(Nav nav) {
+			Nav = nav;
+		}
 
 		public String getLeftid() {
 			return leftid;

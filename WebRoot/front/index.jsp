@@ -246,10 +246,9 @@
 	<div class="footer" >
 		<div id="foot" class="banner-list ">
 		<div class="text-center" style="color:white;font-size:14px;">
-			Copyright © 山东农业大学信息科学与工程学院   <span><a href="app/index.html" style="color:red">管理入口</a></span> <br/> 
+			Copyright © 山东农业大学信息科学与工程学院   <span><a href="app/index.jsp" style="color:red">管理入口</a></span> <br/> 
 			地址:文理大楼1201 邮编:271018  |  技术支持：陈飞龙</br>　
 		</div>
-				
 	</div>
 	
 	

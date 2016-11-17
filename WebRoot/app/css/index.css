@@ -37,3 +37,10 @@ a:focus {  outline:none;   -moz-outline:none;}
 .a-bgcolor-active:visited{background-color:#eee}
 
 #exit{color:#E6162D}
+
+
+
+.login
+{
+	background:#F4F4F4;
+}

@@ -37,6 +37,7 @@ public class NavServiceImpl implements INavService {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<Nav> query()  {
 		 Session s =  sessionFactory.getCurrentSession();
@@ -44,6 +45,7 @@ public class NavServiceImpl implements INavService {
 		 return  query.list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<Nav> querybyparentid(String id)  {
 		 Session s =  sessionFactory.getCurrentSession();
@@ -51,17 +53,21 @@ public class NavServiceImpl implements INavService {
 		 return  query.list();
 	}
 
-	@Override
-	public void delete(String id) {
-		// TODO Auto-generated method stub
-		
-	}
 
+
+
+	@SuppressWarnings("unchecked")
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<Nav> queryone(String id)  {
 		 Session s =  sessionFactory.getCurrentSession();
 		 Query query=s.createQuery(" from Nav where Id='"+id+"'");
 		 return  query.list();
+	}
+
+	@Override
+	public void delete(String id) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

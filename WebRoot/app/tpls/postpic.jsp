@@ -29,7 +29,7 @@
 			<input type="file" id="exampleInputFile" name="uploadFile" class="mt20">
 			<input type="hidden" value=ext name="uploadFileContentType">             
 			<input id="pic_id" type="hidden" value="1" name="id">             
-			<p class="help-block">请上传小于200K的.jpg格式图片</p>
+			<p class="help-block">请上传小于200K的.jpg格式图片(最佳长宽值:300*215)</p>
 			<input class="btn btn-primary" type="submit" value="提交"/>
 		</div>			
 	</form>

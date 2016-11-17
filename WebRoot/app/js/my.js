@@ -11,21 +11,16 @@ function reset () {
 		buttonFocus   : "ok"
 	});
 }
-$(document).ready(function(){
-	$.ajax({
-
-             type: "GET",
-             url: "/sdiia/ajax/islogin.action",
-             success: function(data){
-				console.log(data);
-				if(data == '0')
-				{
-					reset();
-					alertify.alert("检测到您未登录，请登录后使用",function(){
-						window.location = "/sdiia/login/login.jsp";
-					});
-				}
-			 }
-         });
-    });
-
+	
+function login(){
+	var a=document.getElementById("login");
+	var b=document.getElementById("register");
+	a.style.display="block";
+	b.style.display="none";
+}
+function register(){
+	var a=document.getElementById("login");
+	var b=document.getElementById("register");
+	a.style.display="none";
+	b.style.display="block";
+}

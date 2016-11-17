@@ -1,5 +1,5 @@
 
-<h3>图片轮播设置</h3>
+<h3>pic</h3>
 <iframe width="800px" height="600px" src="tpls/postpic.jsp" class="postpic"></iframe>
 
 

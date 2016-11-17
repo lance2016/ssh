@@ -9,31 +9,13 @@
    	     <result name="updatesuccess" type="redirectAction">user_query</result>
 		 <result name="error" >/error.jsp</result>
 	</global-results>  
-	 
 	 <action name="querycontent" class="allContentAction" method="query">
 	 	<result name="querysuccess">/front/index.jsp</result>
 	 </action>
 	<action name="init" class="initAction" method="initindex">
 		   <result name="querysuccess">/front/index.jsp</result>	 
 	</action>
-     <action name="book_*" class="bookAction"  method="{1}" >
-       <result name="querysuccess">/index.jsp</result>	    
-     </action>
-     <action name="nav_*" class="navAction"  method="{1}" >
-       <result name="querysuccess">/front/index.jsp</result>	    
-     </action>
-      <action name="user_*" class="userAction"  method="{1}" >
-       <result name="querysuccess">/front/index.jsp</result>	    
-     </action>
-     
-      <action name="xue_*" class="xueYuanNewsAction"  method="{1}" >
-       <result name="querysuccess">/front/index.jsp</result>	    
-     </action>
-     
-     <action name="stu_*" class="studentWorkAction"  method="{1}" >
-       <result name="querysuccess">/front/index.jsp</result>	    
-     </action>
-     
+    
      <!-- 二级页面 -->
      <action name="qsf_*" class="querySecondPageAction" method="{1}">
      	<result name="querysecondsuccess">/front/second.jsp</result>
@@ -43,4 +25,33 @@
      	<result name="querythirdsuccess">/front/third.jsp</result>
      </action>
     </package> 
+    
+    <package name="ajax" extends="json-default" namespace="/ajax"> 
+    
+    
+    	<action name="*" class="allContentAction" method="{1}">  
+            <result name="success" type="json">
+            	<param name="root">result</param>
+            </result> 
+        </action>
+             
+       <!-- <action name="list" class="allContentAction" method="list">  
+            <result name="success" type="json">
+            	<param name="root">result</param>
+            </result> 
+        </action>
+        
+        <action name="delete" class="allContentAction" method="delete">  
+            <result name="success" type="json">
+            	<param name="root">result</param>
+            </result> 
+        </action>
+        
+          <action name="querycontent" class="allContentAction" method="queryContent">  
+            <result name="success" type="json">
+            	<param name="root">result</param>
+            </result> 
+        </action>
+        --> 
+    </package>
 </struts> 

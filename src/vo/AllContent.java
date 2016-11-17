@@ -1,13 +1,15 @@
 package vo;
 public class AllContent {
+	
 	private int Id;
 	private String title;
 	private String content;
 	private String link;
 	private String time;
-	private String important;
+	private int important;
 	private int visitedtime;
 	private String parentid;
+	
 	public int getId() {
 		return Id;
 	}
@@ -38,10 +40,10 @@ public class AllContent {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	public String getImportant() {
+	public int getImportant() {
 		return important;
 	}
-	public void setImportant(String important) {
+	public void setImportant(int important) {
 		this.important = important;
 	}
 	public int getVisitedtime() {
