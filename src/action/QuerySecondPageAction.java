@@ -60,7 +60,7 @@ public class QuerySecondPageAction {
 					NavList = NavService.query();//导航栏
 					NavLeftList=NavService.querybyparentid(id);
 					LocationList=NavService.queryone(leftid);
-					AllContentList=AllContentService.querybyparentid(leftid);
+					AllContentList=AllContentService.list("AllContent",leftid,0,10);
 					
 				return "querysecondsuccess";
 			} catch (Exception e) {
@@ -70,28 +70,7 @@ public class QuerySecondPageAction {
 
 		}
 		
-//		public String list() throws IOException{
-////			  HttpServletResponse response=ServletActionContext.getResponse();  
-//	
-//				id=request.getParameter("id");
-//			  Map<String,Object> map = new HashMap<String,Object>();
-////			  Nav nav = new Nav();
-////			  nav.setId("thisisid");
-////			  nav.setName("this is name");
-////			  nav.setParentid("parentid");
-//			  try {
-//					AllContentList= AllContentService.querybyparentid(id);//导航栏
-//				} catch (Exception e) {
-//						e.printStackTrace();
-//					
-//				}
-//			     map.put("AllContentList", AllContentList);         
-//		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
-//		        result = json.toString();//给result赋值，传递给页
-//		System.out.println(result);
-//		
-//		return "success";
-//		}
+
 		
 
 		public String getResult() {

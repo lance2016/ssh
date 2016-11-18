@@ -48,5 +48,6 @@
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/struts2-json-plugin-2.3.24.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/commons-lang-2.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebRoot/WEB-INF/lib/commons-lang3-3.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-io-2.0.1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -7,7 +7,9 @@
  <id name="Id">
   <generator class="native" />
  </id>
+
  <property name="name"/>
  <property name="parentid"/>
+   <property name="link"/>
 </class>
 </hibernate-mapping>

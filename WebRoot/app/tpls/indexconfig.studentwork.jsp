@@ -24,7 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </td>
 </tr>
  </table>
+
   <pagination  total-items="bigTotalItems" ng-model="bigCurrentPage" 
  max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages">
  </pagination> 
+  <div>共{{n}}条记录</div>
 </div>

@@ -58,8 +58,15 @@ public class AllContentServiceImpl implements IAllContentService {
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<AllContent> querybyparentid(String id) {
+		int size;
 		 Session s =  sessionFactory.getCurrentSession();
-		 Query query=s.createQuery(" from AllContent where parentid='"+id+"'");
+		 if(id=="Z0")
+			 size=16;
+		 else
+			 size=10; 
+		 Query query=s.createQuery(" from AllContent where parentid='"+id+"' order by id desc");
+		 query.setFirstResult(0); //开始记录
+		 query.setMaxResults(size); //查询多少条
 		 return  query.list();
 	}
 	
@@ -83,14 +90,23 @@ public class AllContentServiceImpl implements IAllContentService {
 
 
 	@SuppressWarnings("unchecked")
-	@Override
 	public List<AllContent> list(String table,String id, int start, int size) {
 		Session s =  sessionFactory.getCurrentSession();
-		 Query query=s.createQuery(" from "+table+"  where parentid='"+id+"'");
+		 Query query=s.createQuery(" from "+table+"  where parentid='"+id+"' order by id desc");
 		 query.setFirstResult(start); //开始记录
 		 query.setMaxResults(size); //查询多少条
 		 return  query.list();
 	}
+	
+	//查询总数
+	public int getnum(String table,String id) {
+		Session s =  sessionFactory.getCurrentSession();
+		String hql="select count(*) from "+table+" where parentid='"+id+"'";
+		Query query=s.createQuery(hql);
+		int count=((Long)query.uniqueResult()).intValue();
+		 return count;
+	}
 
+	
 
 }

@@ -36,6 +36,7 @@
 		  <list>
 		       <value>vo/Nav.hbm.xml</value>  
 		       <value>vo/AllContent.hbm.xml</value>  
+		  	<value>vo/User.hbm.xml</value>  
 		  
 		   </list>    
 		</property>

@@ -25,11 +25,12 @@ import vo.Nav;
 @Controller
 @Scope("request")
 public class AllContentAction extends ActionSupport  {
+	private HttpServletRequest request = ServletActionContext.getRequest();
 	 @Resource
 	    INavService NavService;
 	  @Resource
 	  	IAllContentService AllContentService;
-		private HttpServletRequest request = ServletActionContext.getRequest();
+		
 	    List<Nav> NavList;
 	    List<AllContent>AllContentList;
 	    private AllContent AllContent=new AllContent();
@@ -53,8 +54,17 @@ public class AllContentAction extends ActionSupport  {
 		return "success";
 		}
 	    
+	    //ajax 总记录
 	    public String getNum(){
-	    	result="10";
+	    	String table=request.getParameter("table");
+	    	String id=request.getParameter("id");
+	    	int a=AllContentService.getnum(table, id);
+	    
+	    	  Map<String,Object> map = new HashMap<String,Object>();
+	    	  map.put("num", a);         
+		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+		        result = json.toString();//给result赋值，传递给页
+		        
 	    	return "success";
 	    }
 	    
@@ -100,20 +110,18 @@ public class AllContentAction extends ActionSupport  {
 			try {
 				String title=request.getParameter("title");
 				String content=request.getParameter("content");
-				String link=request.getParameter("link");
 				String time=request.getParameter("time");
 				int important=Integer.parseInt(request.getParameter("important"));
-				int visitedtime=Integer.parseInt(request.getParameter("visitedtime"));
 				String parentid=request.getParameter("parentid");
 				
 				
 				AllContent.setTitle(title);
 				AllContent.setContent(content);
 				AllContent.setImportant(important);
-				AllContent.setLink(link);
+			
 				AllContent.setParentid(parentid);
 				AllContent.setTime(time);
-				AllContent.setVisitedtime(visitedtime);
+			
 				
 				AllContentService.add(AllContent);
 				return "success";
@@ -144,7 +152,7 @@ public class AllContentAction extends ActionSupport  {
 				AllContent.setTime(time);
 				AllContent.setVisitedtime(visitedtime);
 				AllContentService.update(AllContent);
-				System.out.println(AllContent.getContent());
+				//System.out.println(AllContent.getContent());
 				return "success";
 				
 			} catch (Exception e) {
@@ -154,6 +162,8 @@ public class AllContentAction extends ActionSupport  {
 
 		}
 
+		
+	
 		public String delete() {
 			int id=Integer.parseInt(request.getParameter("id"));
 			try {

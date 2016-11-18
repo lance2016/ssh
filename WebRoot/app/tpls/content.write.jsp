@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<option value="Z2">学生工作</option>
 					<option value="Z3">就业工作</option>
 					<option value="Z4">学术动态</option>
+					<option value="A0">学院简介</option>
 				</select>
 			</div>		
 	    <div class="form-group">
@@ -25,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	
 	   <div class="form-group">
 		  <label for="name">链接</label>
-		  <input type="text" class="form-control" required   ng-model="link"
+		  <input type="text" class="form-control"  disabled ng-model="link"
 			 placeholder="请输入链接">
 	   </div>
 	   
@@ -36,17 +37,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   </div>
 	   
 	    <div class="form-group">
-		  <label for="name">访问次数</label>
-		  <input type="text" class="form-control" required  ng-model="visitedtime"
+		  
+		  <input type="text" class="form-control" ng-show="false" ng-model="visitedtime"
 			 placeholder="请输入访问次数">
 	   </div>
 	   
-	   
-	   
-	   
+
 	   <div class="form-group">
 		  <label for="name">标记重要</label>
-		<select class="form-control" ng-model="important" >
+		<select class="form-control"  ng-model="important" >
 		   <option value="1">是</option>
 		    <option value="0">否</option>
 	    </select>

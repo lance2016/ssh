@@ -4,18 +4,29 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
    <constant name="struts.objectFactory" value="spring" />
-   <package name="book"  extends="struts-default">
+   <package name="book"  extends="struts-default" namespace="/">
    	<global-results>
    	     <result name="updatesuccess" type="redirectAction">user_query</result>
 		 <result name="error" >/error.jsp</result>
 	</global-results>  
+	  <action name="login" class="userAction" method="login">
+    	<result name="success" type="redirect">/app/index.jsp</result>
+    </action>
+   
+   
+   
+   <action name="uploadfile" class="uploadFileAction" method="upload">
+              <result name="success">/app/tpls/postpic.jsp</result>
+    </action>   
+    
+   
 	 <action name="querycontent" class="allContentAction" method="query">
 	 	<result name="querysuccess">/front/index.jsp</result>
 	 </action>
 	<action name="init" class="initAction" method="initindex">
 		   <result name="querysuccess">/front/index.jsp</result>	 
 	</action>
-    
+  
      <!-- 二级页面 -->
      <action name="qsf_*" class="querySecondPageAction" method="{1}">
      	<result name="querysecondsuccess">/front/second.jsp</result>
@@ -26,15 +37,21 @@
      </action>
     </package> 
     
+    
+    
     <package name="ajax" extends="json-default" namespace="/ajax"> 
-    
-    
     	<action name="*" class="allContentAction" method="{1}">  
             <result name="success" type="json">
             	<param name="root">result</param>
             </result> 
         </action>
              
+             
+         <action name="changepsw" class="userAction" method="changepsw">  
+            <result name="success" type="json">
+            	<param name="root">result</param>
+            </result> 
+        </action>
        <!-- <action name="list" class="allContentAction" method="list">  
             <result name="success" type="json">
             	<param name="root">result</param>

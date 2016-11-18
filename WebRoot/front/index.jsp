@@ -22,7 +22,12 @@
 				<ul>
 					<li><a href="#" style="text-decoration:none">首页</a></li>
 					<c:forEach var="aa" items="${navList}">
-						<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
+						<c:if test="${aa.link=='#'}">
+							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
+						</c:if>
+						<c:if test="${aa.link!='#'}">
+							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
+						</c:if>
 					</c:forEach>
 				</ul>
 	</div>	
@@ -42,25 +47,26 @@
 				<!-- 轮播（Carousel）项目 -->
 				<div class="carousel-inner">
 					<div class="item active">
-						<img src="${pageContext.request.contextPath}/front/carousel/1.jpg"  style="width:800px; height:400px"; alt="First slide">
+						<img src="${pageContext.request.contextPath}/img/1.jpg"  style="width:800px; height:400px"; alt="First slide">
 						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
 					</div>
 					<div class="item">
-						<img src="${pageContext.request.contextPath}/front/carousel/2.jpg"  style="width:800px; height:400px"; alt="Second slide">
+						<img src="${pageContext.request.contextPath}/img/2.jpg"  style="width:800px; height:400px"; alt="Second slide">
 						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
 					</div>
 					<div class="item">
-						<img src="${pageContext.request.contextPath}/front/carousel/3.jpg"  style="width:800px; height:400px"; alt="Third slide">
+						<img src="${pageContext.request.contextPath}/img/3.jpg"  style="width:800px; height:400px"; alt="Third slide">
 						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
 					</div>
 					<div class="item">
-						<img src="${pageContext.request.contextPath}/front/carousel/4.jpg"  style="width:800px; height:400px"; alt="Fourth slide">
+						<img src="${pageContext.request.contextPath}/img/4.jpg"  style="width:800px; height:400px"; alt="Fourth slide">
 						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
 					</div>
 					<div class="item">
-						<img src="${pageContext.request.contextPath}/front/carousel/5.jpg"   style="width:800px; height:400px"; alt="Fifth slide">
+						<img src="${pageContext.request.contextPath}/img/5.jpg"   style="width:800px; height:400px"; alt="Fifth slide">
 						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
 					</div>
+					
 				</div>
 				<!-- 轮播（Carousel）导航 -->
 				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
@@ -246,7 +252,7 @@
 	<div class="footer" >
 		<div id="foot" class="banner-list ">
 		<div class="text-center" style="color:white;font-size:14px;">
-			Copyright © 山东农业大学信息科学与工程学院   <span><a href="app/index.jsp" style="color:red">管理入口</a></span> <br/> 
+			Copyright © 山东农业大学信息科学与工程学院   <span><a href="app/login.jsp" style="color:red">管理入口</a></span> <br/> 
 			地址:文理大楼1201 邮编:271018  |  技术支持：陈飞龙</br>　
 		</div>
 	</div>

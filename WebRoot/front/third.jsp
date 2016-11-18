@@ -20,9 +20,14 @@
 	<div id="banner" class="banner-list ">
 			
 				<ul>
-					<li><a href="http://localhost:8080/ssh/init" style="text-decoration:none">首页</a></li>
+					<li><a href="/ssh/init" style="text-decoration:none">首页</a></li>
 					<c:forEach var="aa" items="${navList}">
-						<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
+						<c:if test="${aa.link=='#'}">
+							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
+						</c:if>
+						<c:if test="${aa.link!='#'}">
+							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
+						</c:if>
 					</c:forEach>
 				</ul>
 	</div>	

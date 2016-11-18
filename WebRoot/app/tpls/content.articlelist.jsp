@@ -16,10 +16,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  <option value='Z4'>学术动态</option>
 	</select>
 	<table class="table table-hover mt20">
-		<tr><th>文章名</th><th>发布日期</th><th>作者</th><th>编辑</th><th>删除</th></tr>		
+		<tr><th>文章名</th><th>发布日期</th><th>访问次数</th><th>编辑</th><th>删除</th></tr>		
 		<tr ng-repeat="article in articles">
-			<td>{{article.title}}</td>
-			<td>{{article.content}}</td>
+			<td width="40%">{{article.title}}</td>
+			<td>{{article.time}}</td>
 			<td>{{article.visitedtime}}</td>
 			<td><a ui-sref="index.indexconfig.rewrite({id:article.id})">编辑</a/></td>
 			<td><a ng-click="Delete(article.id)">删除</a/></td>

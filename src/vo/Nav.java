@@ -3,6 +3,7 @@ public class Nav {
 	private String Id;
 	private String name;
 	private String parentid;
+	private String link;
 	public String getId() {
 		return Id;
 	}
@@ -20,6 +21,12 @@ public class Nav {
 	}
 	public void setParentid(String parentid) {
 		this.parentid = parentid;
+	}
+	public String getLink() {
+		return link;
+	}
+	public void setLink(String link) {
+		this.link = link;
 	}
 	
 }

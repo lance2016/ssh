@@ -1,6 +1,36 @@
 var myCtrls = angular.module('myCtrls',[]);
 
 
+myApp.controller('manage_id',['$scope','$http','$state',
+	function ($scope, $http, $state,$route) {
+		$scope.id="20141223";
+  
+  $scope.change = function(){
+		$http({
+			method:'POST',
+			url:"/ssh/ajax/changepsw.action",
+			params:{
+					id:$scope.id,
+					p:$scope.psw,
+					p1:$scope.psw1,
+					p2:$scope.psw2}
+		}).success(function(data,status,headers,config){
+			
+			data = eval("("+data+")"); 
+			data = angular.fromJson(data);
+			alertify.success(data.result);
+			saveData = data;
+		}).error(function(){
+
+		}); 
+	}	
+}]);
+
+
+
+
+
+
 
 //学院动态
 
@@ -8,29 +38,43 @@ myApp.controller('xueyuannews',['$scope','$http','$state',
 	function ($scope, $http, $state,$route) {
 		var num=6;
 		 $scope.maxSize = 7;    // 显示最大页数
-  $scope.totalItems = 10000; // 总条数
-  $scope.currentPage = 1;//当前页取值
-  $scope.bigTotalItems = 20;
-  $scope.bigCurrentPage = 1;
+		  $scope.totalItems = 10000; // 总条数
+		  $scope.currentPage = 1;//当前页取值
+		  $scope.bigTotalItems = 20;
+		  $scope.bigCurrentPage = 1;
+  
+  $scope.getnum = function(){
+		$http({
+			method:'POST',
+			url:"/ssh/ajax/getNum.action",
+			params:{table:"AllContent",id:"Z0"}
+		}).success(function(data,status,headers,config){
 
+			data = eval("("+data+")"); 
+			data = angular.fromJson(data);
+			saveData = data;
+			num=data.num;
+			$scope.n=num;
+		}).error(function(){
+
+		}); 
+	}
+
+	$scope.getnum();
 		$scope.getAll = function(){
 			$http({
 				method:'POST',
 				url:"/ssh/ajax/listpage.action",
-				params:{table:"AllContent",id:"Z0",start:($scope.bigCurrentPage-1)*10,size:10}
+				params:{table:"AllContent",id:"Z0",start:($scope.bigCurrentPage-1)*5,size:5}
 			}).success(function(data,status,headers,config){
 				
 				data = eval("("+data+")"); 
 				data = angular.fromJson(data);
 				saveData = data;
-//				if(data.length > 10);
-//					data = data.slice(0,10);		
+
 				$scope.news =data.AllContentList;
-				$scope.bigTotalItems = (num/10)*10;//默认每页10条，此处转换为每页4条		
-			//	saveData=data;
-					//data = data.slice(($scope.bigCurrentPage-1)*4,$scope.bigCurrentPage*4);//每页显示4条
-					
-					
+				$scope.bigTotalItems = (num/5)*10;//默认每页10条，此处转换为每页4条		
+		
 			}).error(function(){
 
 			}); 
@@ -45,7 +89,7 @@ myApp.controller('xueyuannews',['$scope','$http','$state',
 		
 	
 		$scope.Delete=function(id){
-			var r = alertify.confirm("delete <strong>"+id+"</strong> 吗?",function (e){
+			var r = alertify.confirm("delete <strong>"+id+"</strong> ?",function (e){
 				if (e) {
 					$http({
 						method:'GET',
@@ -53,12 +97,12 @@ myApp.controller('xueyuannews',['$scope','$http','$state',
 						params: {id:id}
 					}).success(function(data,status,headers,config){
 						$scope.load();
-						alertify.success("删除成功");						
+						alertify.success("success");						
 					}).error(function(data,status,headers,config){
-						alertify.error("删除失败,请检查网络连接");
+						alertify.error("error,请检查网络连接");
 				});						
 				} else {					
-					alertify.error("操作取消");
+					alertify.error("canceled");
 				}
 			}); 	
 		}
@@ -78,7 +122,24 @@ myApp.controller('inform',['$scope','$http','$state',
   $scope.currentPage = 1;//当前页取值
   $scope.bigTotalItems = 20;
   $scope.bigCurrentPage = 1;
+  $scope.getnum = function(){
+		$http({
+			method:'POST',
+			url:"/ssh/ajax/getNum.action",
+			params:{table:"AllContent",id:"Z1"}
+		}).success(function(data,status,headers,config){
 
+			data = eval("("+data+")"); 
+			data = angular.fromJson(data);
+			saveData = data;
+			num=data.num;
+			$scope.n=num;
+		}).error(function(){
+
+		}); 
+	}
+
+	$scope.getnum();
 		$scope.getAll = function(){
 			$http({
 				method:'POST',
@@ -89,14 +150,8 @@ myApp.controller('inform',['$scope','$http','$state',
 				data = eval("("+data+")"); 
 				data = angular.fromJson(data);
 				saveData = data;
-//				if(data.length > 10);
-//					data = data.slice(0,10);		
 				$scope.news =data.AllContentList;
 				$scope.bigTotalItems = (num/10)*10;//默认每页10条，此处转换为每页4条		
-			//	saveData=data;
-					//data = data.slice(($scope.bigCurrentPage-1)*4,$scope.bigCurrentPage*4);//每页显示4条
-					
-					
 			}).error(function(){
 
 			}); 
@@ -111,7 +166,7 @@ myApp.controller('inform',['$scope','$http','$state',
 		
 	
 		$scope.Delete=function(id){
-			var r = alertify.confirm("确认删除 <strong>"+id+"</strong> 吗?",function (e){
+			var r = alertify.confirm("Delete <strong>"+id+"</strong> ?",function (e){
 				if (e) {
 					$http({
 						method:'GET',
@@ -119,12 +174,12 @@ myApp.controller('inform',['$scope','$http','$state',
 						params: {id:id}
 					}).success(function(data,status,headers,config){
 						$scope.load();
-						alertify.success("删除成功");						
+						alertify.success("success");						
 					}).error(function(data,status,headers,config){
-						alertify.error("删除失败,请检查网络连接");
+						alertify.error("error,请检查网络连接");
 				});						
 				} else {					
-					alertify.error("操作取消");
+					alertify.error("canceled");
 				}
 			}); 	
 		}
@@ -146,12 +201,31 @@ myApp.controller('inform',['$scope','$http','$state',
 //学生工作
 myApp.controller('studentwork',['$scope','$http','$state',
 	function ($scope, $http, $state,$route) {
-		var num=6;
+		var num;
 		 $scope.maxSize = 7;    // 显示最大页数
 $scope.totalItems = 10000; // 总条数
 $scope.currentPage = 1;//当前页取值
 $scope.bigTotalItems = 20;
 $scope.bigCurrentPage = 1;
+
+$scope.getnum = function(){
+	$http({
+		method:'POST',
+		url:"/ssh/ajax/getNum.action",
+		params:{table:"AllContent",id:"Z2"}
+	}).success(function(data,status,headers,config){
+
+		data = eval("("+data+")"); 
+		data = angular.fromJson(data);
+		saveData = data;
+		num=data.num;
+		$scope.n=num;
+	}).error(function(){
+
+	}); 
+}
+
+$scope.getnum();
 
 		$scope.getAll = function(){
 			$http({
@@ -163,14 +237,9 @@ $scope.bigCurrentPage = 1;
 				data = eval("("+data+")"); 
 				data = angular.fromJson(data);
 				saveData = data;
-//				if(data.length > 10);
-//					data = data.slice(0,10);		
 				$scope.news =data.AllContentList;
 				$scope.bigTotalItems = (num/10)*10;//默认每页10条，此处转换为每页4条		
-			//	saveData=data;
-					//data = data.slice(($scope.bigCurrentPage-1)*4,$scope.bigCurrentPage*4);//每页显示4条
-					
-					
+		
 			}).error(function(){
 
 			}); 
@@ -185,7 +254,7 @@ $scope.bigCurrentPage = 1;
 		
 	
 		$scope.Delete=function(id){
-			var r = alertify.confirm("确认删除 <strong>"+id+"</strong> 吗?",function (e){
+			var r = alertify.confirm("Delete <strong>"+id+"</strong> ?",function (e){
 				if (e) {
 					$http({
 						method:'GET',
@@ -193,12 +262,12 @@ $scope.bigCurrentPage = 1;
 						params: {id:id}
 					}).success(function(data,status,headers,config){
 						$scope.load();
-						alertify.success("删除成功");						
+						alertify.success("success");						
 					}).error(function(data,status,headers,config){
-						alertify.error("删除失败,请检查网络连接");
+						alertify.error("error,请检查网络连接");
 				});						
 				} else {					
-					alertify.error("操作取消");
+					alertify.error("canceled");
 				}
 			}); 	
 		}
@@ -213,11 +282,28 @@ myApp.controller('work',['$scope','$http','$state',
 	function ($scope, $http, $state,$route) {
 		var num=6;
 		 $scope.maxSize = 7;    // 显示最大页数
-$scope.totalItems = 10000; // 总条数
-$scope.currentPage = 1;//当前页取值
-$scope.bigTotalItems = 20;
-$scope.bigCurrentPage = 1;
+		$scope.totalItems = 10000; // 总条数
+		$scope.currentPage = 1;//当前页取值
+		$scope.bigTotalItems = 20;
+		$scope.bigCurrentPage = 1;
+		$scope.getnum = function(){
+			$http({
+				method:'POST',
+				url:"/ssh/ajax/getNum.action",
+				params:{table:"AllContent",id:"Z3"}
+			}).success(function(data,status,headers,config){
+		
+				data = eval("("+data+")"); 
+				data = angular.fromJson(data);
+				saveData = data;
+				num=data.num;
+				$scope.n=num;
+			}).error(function(){
+		
+			}); 
+		}
 
+$scope.getnum();
 		$scope.getAll = function(){
 			$http({
 				method:'POST',
@@ -228,14 +314,10 @@ $scope.bigCurrentPage = 1;
 				data = eval("("+data+")"); 
 				data = angular.fromJson(data);
 				saveData = data;
-//				if(data.length > 10);
-//					data = data.slice(0,10);		
+		
 				$scope.news =data.AllContentList;
 				$scope.bigTotalItems = (num/10)*10;//默认每页10条，此处转换为每页4条		
-			//	saveData=data;
-					//data = data.slice(($scope.bigCurrentPage-1)*4,$scope.bigCurrentPage*4);//每页显示4条
-					
-					
+	
 			}).error(function(){
 
 			}); 
@@ -250,7 +332,7 @@ $scope.bigCurrentPage = 1;
 		
 	
 		$scope.Delete=function(id){
-			var r = alertify.confirm("确认删除 <strong>"+id+"</strong> 吗?",function (e){
+			var r = alertify.confirm("Delete <strong>"+id+"</strong> ?",function (e){
 				if (e) {
 					$http({
 						method:'GET',
@@ -258,12 +340,12 @@ $scope.bigCurrentPage = 1;
 						params: {id:id}
 					}).success(function(data,status,headers,config){
 						$scope.load();
-						alertify.success("删除成功");						
+						alertify.success("success");						
 					}).error(function(data,status,headers,config){
-						alertify.error("删除失败,请检查网络连接");
+						alertify.error("error,请检查网络连接");
 				});						
 				} else {					
-					alertify.error("操作取消");
+					alertify.error("canceled");
 				}
 			}); 	
 		}
@@ -280,7 +362,24 @@ $scope.totalItems = 10000; // 总条数
 $scope.currentPage = 1;//当前页取值
 $scope.bigTotalItems = 20;
 $scope.bigCurrentPage = 1;
+$scope.getnum = function(){
+	$http({
+		method:'POST',
+		url:"/ssh/ajax/getNum.action",
+		params:{table:"AllContent",id:"Z4"}
+	}).success(function(data,status,headers,config){
 
+		data = eval("("+data+")"); 
+		data = angular.fromJson(data);
+		saveData = data;
+		num=data.num;
+		$scope.n=num;
+	}).error(function(){
+
+	}); 
+}
+
+$scope.getnum();
 	$scope.getAll = function(){
 		$http({
 			method:'POST',
@@ -311,7 +410,7 @@ $scope.bigCurrentPage = 1;
 
 
 	$scope.Delete=function(id){
-		var r = alertify.confirm("确认删除 <strong>"+id+"</strong> 吗?",function (e){
+		var r = alertify.confirm("Delete <strong>"+id+"</strong> ?",function (e){
 			if (e) {
 				$http({
 					method:'GET',
@@ -319,12 +418,12 @@ $scope.bigCurrentPage = 1;
 					params: {id:id}
 				}).success(function(data,status,headers,config){
 					$scope.load();
-					alertify.success("删除成功");						
+					alertify.success("success");						
 				}).error(function(data,status,headers,config){
-					alertify.error("删除失败,请检查网络连接");
+					alertify.error("error,请检查网络连接");
 			});						
 			} else {					
-				alertify.error("操作取消");
+				alertify.error("canceled");
 			}
 		}); 	
 	}                         	
@@ -350,7 +449,7 @@ myCtrls.controller('Edit',['$stateParams','$scope','$http','$state','msgBox',
 				$scope.articles = data.AllContentList;
 
 					if(data=="error")
-						alertify.error("加载失败");
+						alertify.error("Error");
 					else{
 						var a=CKEDITOR.replace('WriteArticleEditor');
 						$scope.oldid=$scope.articles[0].id;
@@ -362,7 +461,7 @@ myCtrls.controller('Edit',['$stateParams','$scope','$http','$state','msgBox',
 						$scope.time=$scope.articles[0].time;
 						$scope.link=$scope.articles[0].link;
 						$scope.parentid=$scope.articles[0].parentid;
-						alertify.success("加载完成");
+						alertify.success("load success");
 				}
 
 			}).error(function(){
@@ -387,15 +486,15 @@ myCtrls.controller('Edit',['$stateParams','$scope','$http','$state','msgBox',
 					}
 			}).success(function(data,status,headers,config){
 					if(data!="1")
-						alertify.success("修改成功");
+						alertify.success("SUCCESS");
 					else{
-						alertify.error("修改失败");
+						alertify.error("ERROR");
 					}
 			}).error(function(){
 				alert(status);
 			}); 
 				
-		//	setTimeout(function(){$state.go('index.indexconfig.inform')},500);
+		//setTimeout(function(){$state.go('index.indexconfig.inform')},500);
 		}
 
 	}
@@ -407,8 +506,6 @@ myCtrls.controller('LoadArticle',['$scope','$http','$window',
 	function($scope,$http,$window){
 		//默认设置
       $scope.value = 'Z1';
-      
-      
 		$scope.LoadById = function(id){		
 			//向后台请求是否包括头条的参数
 			//var flag = 1;
@@ -418,6 +515,7 @@ myCtrls.controller('LoadArticle',['$scope','$http','$window',
 				url:"/ssh/ajax/list.action",
 				params:{id:$scope.value}
 			}).success(function(data,status,headers,config){
+				alertify.success("success");
 				data = eval("("+data+")"); 
 				data = angular.fromJson(data);
 				$scope.articles = data.AllContentList; 
@@ -426,22 +524,22 @@ myCtrls.controller('LoadArticle',['$scope','$http','$window',
 		}
 		$scope.LoadById($scope.value);
 		//删除文章
-		$scope.DeleteArticle = function(id){
+		$scope.Delete = function(id){
 			
-			var r = alertify.confirm("确定要删除吗?",function (e){
+			var r = alertify.confirm("Delete "+id+" ?",function (e){
 				if (e) {
 					$http({
 						method:'GET',
 						url:'/sdiia/ajax/deleteArticle.action',
 						params: {id:id}
 					}).success(function(data,status,headers,config){
-						alertify.success("删除成功");
+						alertify.success("success");
 						$scope.LoadById($scope.value);
 					}).error(function(data,status,headers,config){
-						alertify.error("删除失败,请检查网络连接");
+						alertify.error("error");
 					});						
 				} else {
-					alertify.error("操作取消");
+					alertify.error("canceled");
 				}
 			}); 			
 		}
@@ -453,7 +551,7 @@ myCtrls.controller('LoadArticle',['$scope','$http','$window',
 myCtrls.controller('write',['$stateParams','$scope','$http','$state','msgBox',
       function($stateParams,$scope,$http,$state,msgBox){
 	CKEDITOR.replace('WriteArticleEditor');	
-	 $scope.Submit = function(title,content,link,time,visitedtime,important,parentid){	
+	 $scope.Submit = function(title,content,time,important,parentid){	
 			$scope.content = CKEDITOR.instances.WriteArticleEditor.getData();	
 			alert($scope.content);
 			$http({
@@ -462,20 +560,21 @@ myCtrls.controller('write',['$stateParams','$scope','$http','$state','msgBox',
 				params: {
 					title:title,
 					content:$scope.content,
-					link:link,
 					time:time,
-					visitedtime:visitedtime,
 					important:important,
 					parentid:parentid
 					}
 			}).success(function(data,status,headers,config){
 					if(data!="error")
-						alertify.success("修改成功");
+						{
+							alertify.success("SUCCESS");
+							setTimeout(function(){$state.go('index.load')},500);
+						}
 					else{
-						alertify.error("修改失败");
+						alertify.error("ERROR");
 					}
 			}).error(function(){
-				alert(status);
+			
 			}); 
 				
 }}
@@ -501,21 +600,21 @@ myCtrls.controller('write',['$stateParams','$scope','$http','$state','msgBox',
 //		//删除刊物
 //		$scope.DeleteArticle = function(id){
 //			reset();
-//			var r = alertify.confirm("确定要删除吗?",function (e){
+//			var r = alertify.confirm("确定要删除?",function (e){
 //				if (e) {
 //					$http({
 //						method:'GET',
 //						url:'/sdiia/ajax/deleteArticle.action',
 //						params: {id:id}
 //					}).success(function(data,status,headers,config){
-//						alertify.success("删除成功");
+//						alertify.success("success");
 //						$scope.load();
 //						
 //					}).error(function(data,status,headers,config){
-//						alertify.error("删除失败,请检查网络连接");
+//						alertify.error("error,请检查网络连接");
 //					});						
 //				} else {
-//					alertify.error("操作取消");
+//					alertify.error("canceled");
 //				}
 //			}); 			
 //		}
@@ -713,20 +812,20 @@ myCtrls.controller('write',['$stateParams','$scope','$http','$state','msgBox',
 //		//删除文章
 //		$scope.DeleteArticle = function(id){
 //			reset();
-//			var r = alertify.confirm("确定要删除吗?",function (e){
+//			var r = alertify.confirm("确定要删除?",function (e){
 //				if (e) {
 //					$http({
 //						method:'GET',
 //						url:'/sdiia/ajax/deleteArticle.action',
 //						params: {id:id}
 //					}).success(function(data,status,headers,config){
-//						alertify.success("删除成功");
+//						alertify.success("success");
 //						$scope.LoadById($scope.value);
 //					}).error(function(data,status,headers,config){
-//						alertify.error("删除失败,请检查网络连接");
+//						alertify.error("error,请检查网络连接");
 //					});						
 //				} else {
-//					alertify.error("操作取消");
+//					alertify.error("canceled");
 //				}
 //			}); 			
 //		}

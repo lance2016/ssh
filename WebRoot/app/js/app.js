@@ -27,6 +27,25 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             }
         })
         
+        
+        .state('index.manager', {
+            url: '/indexmanager',
+            views: {
+                'main@index': {
+                    templateUrl: 'tpls/index.manager.jsp'
+                }
+            }
+        })
+        
+       
+         
+         //通知公告
+          .state('index.manager.changepsw', {
+            url: '/changepsw',
+            templateUrl: 'tpls/index.changepsw.jsp'
+        })
+        
+        
         .state('index.write', {
             url: '/write',
             views: {

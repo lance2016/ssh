@@ -22,14 +22,13 @@
 			<option value='3'>图片3</option>
 			<option value='4'>图片4</option>
 			<option value='5'>图片5</option>
-			<option value='6'>图片6</option>
-			<option value='7'>图片7</option>
+		
 		</select>
 		<div class="form-group mt20" >
 			<input type="file" id="exampleInputFile" name="uploadFile" class="mt20">
 			<input type="hidden" value=ext name="uploadFileContentType">             
 			<input id="pic_id" type="hidden" value="1" name="id">             
-			<p class="help-block">请上传小于200K的.jpg格式图片(最佳长宽值:300*215)</p>
+			<p class="help-block">请上传小于2000K的.jpg格式图片(最佳长宽值:300*215)</p>
 			<input class="btn btn-primary" type="submit" value="提交"/>
 		</div>			
 	</form>
@@ -44,14 +43,14 @@ $(document).ready(function(){
 	if(msg!='')
 		alertify.alert(msg);
 	var pic=1;
-	var url = "/sdiia/img/" + pic + ".jpg?" + new Date();
+	var url = "/ssh/img/1.jpg";
 	$('#pic_content').attr('src',url);
 });
 //更改上传图片
 $('#pic_select').on('change',function(){
     var id = this.value;
 	//console.log(id);
-	var url = "/sdiia/img/" + id + ".jpg?" + new Date();
+	var url = "/ssh/img/" + id + ".jpg?" + new Date();
 	$('#pic_content').attr('src',url);
 	$('#pic_id').attr('value',id);
 	//console.log($('#pic_id').attr('value'));

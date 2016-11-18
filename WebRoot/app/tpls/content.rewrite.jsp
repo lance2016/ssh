@@ -7,8 +7,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <div ng-controller='Edit'>	
 	<form role="form">
+	
 		<div class="form-group">
-		  <input type="text" class="form-control" ng-show="true"  required disabled  ng-model="id"
+		  <input type="text" class="form-control" ng-show="false"  required disabled  ng-model="id"
 			 placeholder="id">
 	   </div>
 
@@ -19,8 +20,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   </div>
 	  
 	   <div class="form-group">
-		  <label for="name">链接</label>
-		  <input type="text" class="form-control" required   ng-model="link"
+		 
+		  <input type="text" class="form-control" required ng-show="false"  ng-model="link"
 			 placeholder="请输入链接">
 	   </div>
 	   
@@ -31,21 +32,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   </div>
 	   
 	    <div class="form-group">
-		  <label for="name">访问次数</label>
-		  <input type="text" class="form-control" required  ng-model="visitedtime"
+		 
+		  <input type="text" class="form-control" required  ng-show="false" ng-model="visitedtime"
 			 placeholder="请输入访问次数">
 	   </div>
 	   
 	   
-	   <div class="form-group">
-		  <label for="name">父id</label>
-		  <input type="text" class="form-control" required  ng-model="parentid"
+	   <div class="form-group" >
+		 
+		  <input type="text" class="form-control" required  ng-show="false" ng-model="parentid"
 			 placeholder="请输入父id">
 	   </div>  
 	   <div class="form-group">
-		  <label for="name">是否置红</label>
-		
-		
+		  <label for="name">重要</label>
 		<select class="form-control" ng-model="important" >
 		   <option value="1">是</option>
 		    <option value="0">否</option>
