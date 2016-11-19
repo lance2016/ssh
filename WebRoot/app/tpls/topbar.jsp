@@ -22,10 +22,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      
        
         <li style="margin-left:300px">
-            <a  href="/ssh/init">前台首页</a>
+            <a  href="/ssh/init"> 前台首页 </a>
         </li>
         <li>
-            <a id="exit" href="#">注销</a>
+          <a id="exit" onclick="Exit()">注销</a>
         </li>
     </ul>
 </nav>

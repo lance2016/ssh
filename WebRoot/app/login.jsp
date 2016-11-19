@@ -32,6 +32,7 @@
 			<p class="submit">
 				<input type="submit" id="wp-submit" class="button button-primary button-large" value="登录" />
 			</p>
+			<span><a href="/ssh/init">返回首页</a></span>
 
 	</div>
 		<div class="clear"></div>

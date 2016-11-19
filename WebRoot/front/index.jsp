@@ -23,7 +23,7 @@
 					<li><a href="#" style="text-decoration:none">首页</a></li>
 					<c:forEach var="aa" items="${navList}">
 						<c:if test="${aa.link=='#'}">
-							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
+							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}&pagenum=1" style="text-decoration:none">${aa.name}</a></li>
 						</c:if>
 						<c:if test="${aa.link!='#'&&aa.link!='static'}">
 							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
@@ -48,23 +48,23 @@
 				<div class="carousel-inner">
 					<div class="item active">
 						<img src="${pageContext.request.contextPath}/img/1.jpg"  style="width:800px; height:400px"; alt="First slide">
-						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
+						<!-- <div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div> -->
 					</div>
 					<div class="item">
 						<img src="${pageContext.request.contextPath}/img/2.jpg"  style="width:800px; height:400px"; alt="Second slide">
-						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
+						<!--  <div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>-->
 					</div>
 					<div class="item">
 						<img src="${pageContext.request.contextPath}/img/3.jpg"  style="width:800px; height:400px"; alt="Third slide">
-						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
+						<!--  <div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>-->
 					</div>
 					<div class="item">
 						<img src="${pageContext.request.contextPath}/img/4.jpg"  style="width:800px; height:400px"; alt="Fourth slide">
-						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
+						<!--  <div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>-->
 					</div>
 					<div class="item">
 						<img src="${pageContext.request.contextPath}/img/5.jpg"   style="width:800px; height:400px"; alt="Fifth slide">
-						<div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div>
+						<!-- <div class="carousel-caption"><a>信息学院2016级本科生迎新大会</a></div> -->
 					</div>
 					
 				</div>
@@ -82,7 +82,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList1.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=o" target="_self">
+				    	<div align="right"><a href="qsf_query?id=o&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -115,7 +115,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList2.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=p" target="_self">
+				    	<div align="right"><a href="qsf_query?id=p&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -149,7 +149,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList3.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=q" target="_self">
+				    	<div align="right"><a href="qsf_query?id=q&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -180,7 +180,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList4.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=r" target="_self">
+				    	<div align="right"><a href="qsf_query?id=r&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -218,7 +218,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList5.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=s" target="_self">
+				    	<div align="right"><a href="qsf_query?id=s&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>

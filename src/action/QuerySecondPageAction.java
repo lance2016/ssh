@@ -9,9 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
 
 
 
@@ -38,14 +41,31 @@ public class QuerySecondPageAction {
 	   String leftid;
 	   private String result;
 	   private Map<String, Object> dataMap;  
+	   
+	   
 		public String query() {
+			HttpSession s = request.getSession();
 			 id=request.getParameter("id");
-			// System.out.println("id="+id);
+			 int pagesize=2;
+			 int pagenum=Integer.parseInt(request.getParameter("pagenum"));
 			try {
 				NavLeftList=NavService.querybyparentid(id);
+				
 				NavList = NavService.query();//导航栏
-				LocationList=NavService.queryone(NavLeftList.get(0).getId());
-				AllContentList=AllContentService.querybyparentid(NavLeftList.get(0).getId());//最初加载左侧第一个
+				
+				LocationList=NavService.queryone(NavLeftList.get(0).getId());//查询位置
+				
+				
+				AllContentList=AllContentService.list("AllContent", NavLeftList.get(0).getId(), (pagenum-1)*pagesize, pagesize);//最初加载左侧第一个的内容
+				
+				
+				int totalNum=AllContentService.getnum("AllContent", NavLeftList.get(0).getId());//总条数
+				int pageCount=(totalNum+1)/2;//总页数
+				int pageNo=pagenum;//当前页
+				s.setAttribute("pageCount",pageCount);//leftid
+				s.setAttribute("pageNo", pageNo);
+				s.setAttribute("totalNum",totalNum);
+				
 				return "querysecondsuccess";
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -55,12 +75,27 @@ public class QuerySecondPageAction {
 		}
 		
 		public String changequery() {
+		
+			int pagesize=2;//每页两条
+			HttpSession s = request.getSession();
 			leftid=request.getParameter("leftid");//左侧选择的id
+			int pagenum=Integer.parseInt(request.getParameter("pagenum"));
 			try {
 					NavList = NavService.query();//导航栏
+					
 					NavLeftList=NavService.querybyparentid(id);
+					
 					LocationList=NavService.queryone(leftid);
-					AllContentList=AllContentService.list("AllContent",leftid,0,10);
+					
+					AllContentList=AllContentService.list("AllContent",leftid,(pagenum-1)*pagesize,pagesize);
+					int totalNum=AllContentService.getnum("AllContent", leftid);//总条数
+					int pageCount=(totalNum+1)/2;//总页数
+					int pageNo=pagenum;//当前页
+					s.setAttribute("pageCount",pageCount);//leftid
+					s.setAttribute("pageNo", pageNo);
+					s.setAttribute("totalNum",totalNum);
+					//2条记录每页
+				
 					
 				return "querysecondsuccess";
 			} catch (Exception e) {

@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+
 import vo.User;
 
 public interface IUserService {
@@ -12,6 +13,6 @@ public interface IUserService {
 	public abstract void update(int id,String password) ;
 	
 	public abstract List<User> check(int id,String password) ;
-	
-	
+	public abstract List<User> query(int id) ;
+	public abstract String MD5(String string);
 }

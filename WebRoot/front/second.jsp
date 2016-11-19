@@ -27,7 +27,7 @@
 					<li><a href="/ssh/init" style="text-decoration:none">首页</a></li>
 					<c:forEach var="aa" items="${navList}">
 						<c:if test="${aa.link=='#'}">
-							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
+							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}&pagenum=1" style="text-decoration:none">${aa.name}</a></li>
 						</c:if>
 						<c:if test="${aa.link!='#'}">
 							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
@@ -44,7 +44,7 @@
 				<div>
 					<c:forEach var="m" items="${navLeftList}">
 						<div class="text-center">
-							<a class="btn btn-default btn-lg " style="width:200px" href="qsf_changequery?leftid=${m.id}">${m.name}</a>
+							<a class="btn btn-default btn-lg " style="width:200px" href="qsf_changequery?leftid=${m.id}&pagenum=1">${m.name}</a>
 						</div>
 					</c:forEach>				
 				</div>
@@ -69,6 +69,22 @@
 						</div>
 					</c:forEach>				
 				</ul>
+				<!-- 分页 -->
+						<c:if test="${allContentList.get(0).getLink()!='#'}">
+									共${pageCount }页,
+									当前第${pageNo}页,
+									共${ totalNum}条
+									
+							
+							<c:if test="${pageNo>1 }">
+								  	<a href="qsf_changequery?leftid=${locationList.get(0).getId()}&pagenum=1">第一页</a>
+								  	<a href="qsf_changequery?leftid=${locationList.get(0).getId()}&pagenum=${pageNo-1}">上一页</a>
+								  	</c:if>
+							<c:if test="${pageNo!=pageCount }">
+								  	<a href="qsf_changequery?leftid=${locationList.get(0).getId()}&pagenum=${pageNo+1}">下一页</a>
+								  	<a href="qsf_changequery?leftid=${locationList.get(0).getId()}&pagenum=${pageCount}">最后一页</a>
+							</c:if>
+						</c:if>
 						
 			<!-- 	<div ng-app="myApp" >
       				  <section ng-controller="pageDemo" class="col-md-9" >
@@ -87,7 +103,7 @@
 	<div class="footer" >
 		<div id="foot" class="banner-list ">
 		<div class="text-center" style="color:white;font-size:14px;">
-			Copyright © 山东农业大学信息科学与工程学院<span><a href="app/index.html" style="color:red">管理入口</a></span> <br/> 
+			Copyright © 山东农业大学信息科学与工程学院<span><a href="app/login.jsp" style="color:red">管理入口</a></span> <br/> 
 			地址:文理大楼1201 邮编:271018  |  技术支持：陈飞龙</br>　
 		</div>
 				

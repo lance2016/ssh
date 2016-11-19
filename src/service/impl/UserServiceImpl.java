@@ -1,17 +1,17 @@
 package service.impl;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import service.IUserService;
+import sun.misc.BASE64Encoder;
 import vo.User;
 @Service
 @Transactional
@@ -60,6 +60,31 @@ public class UserServiceImpl implements IUserService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List<User> query(int id) {
+		Session s =  sessionFactory.getCurrentSession();
+		 Query query=s.createQuery(" from User where id="+id);
+		 return  query.list();
+	}
+	
+	
+	 public String MD5(String string) {
+    	 byte[]oldBytes=string.getBytes();
+    	 MessageDigest md;
+    	 try{
+    		 md=MessageDigest.getInstance("MD5");
+    		 byte[]newBytes=md.digest(oldBytes);
+    		 BASE64Encoder encoder=new BASE64Encoder();
+    		 String newStr=encoder.encode(newBytes);
+    		 return newStr;
+    	 }
+    	 catch(NoSuchAlgorithmException e)
+    	 {
+    			return null;
+    	 }
+  }
 
 	
 

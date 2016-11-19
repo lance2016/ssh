@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
@@ -30,7 +31,7 @@ public class AllContentAction extends ActionSupport  {
 	    INavService NavService;
 	  @Resource
 	  	IAllContentService AllContentService;
-		
+	  
 	    List<Nav> NavList;
 	    List<AllContent>AllContentList;
 	    private AllContent AllContent=new AllContent();
@@ -197,7 +198,6 @@ public class AllContentAction extends ActionSupport  {
 		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
 		        result = json.toString();//给result赋值，传递给页
 			return "success";
-			
 		}
 		
 		public INavService getNavService() {
