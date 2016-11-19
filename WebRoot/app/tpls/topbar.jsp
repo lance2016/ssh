@@ -20,9 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a ui-sref="index.manager" ng-click="change($event)" class="a-color">管理员设置</a>
         </li>
      
-        <li>
-            <a ui-sref="index.settings" ng-click="change($event)" class="a-color">全局设置</a>
-        </li>
+       
         <li style="margin-left:300px">
             <a  href="/ssh/init">前台首页</a>
         </li>

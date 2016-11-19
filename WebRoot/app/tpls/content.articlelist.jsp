@@ -8,12 +8,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <h3>文章</h3>
 <a ui-sref="index.write"><button class="btn btn-primary">写文章</button></a>
 <div ng-controller='LoadArticle'>
-	<select class="form-control w200 mt10" ng-model="value" ng-change="LoadById(value)">
-	  <option value='Z0'>学院动态</option>
-	  <option value='Z1'>通知公告</option>
-	  <option value='Z2'>学生工作</option>
-	  <option value='Z3'>就业工作</option>
-	  <option value='Z4'>学术动态</option>
+
+	 <select   class="form-control w200 mt10" ng-model="value" ng-change="LoadById(value)">
+					
+					<option ng-repeat="nav in navs" value="{{nav.id}}">{{nav.name}}</option>
+					
+				</select>
 	</select>
 	<table class="table table-hover mt20">
 		<tr><th>文章名</th><th>发布日期</th><th>访问次数</th><th>编辑</th><th>删除</th></tr>		
@@ -25,4 +25,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td><a ng-click="Delete(article.id)">删除</a/></td>
 		</tr>
 	</table>
+	<pagination  total-items="bigTotalItems" ng-model="bigCurrentPage" 
+ max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages">
+ </pagination> 
+   <div>共{{n}}条记录</div>
 </div>

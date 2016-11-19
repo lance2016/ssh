@@ -11,9 +11,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <thead>
     <tr>
     	<th>ID</th>
-      <th>标题</th>
+      <th>标题</th>
       <th>删除</th>
-      <th>编辑</th>
+      <th>编辑</th>
     </tr>
   </thead>
 <tr ng-repeat="x in news">

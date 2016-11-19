@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', [
+﻿var myApp = angular.module('myApp', [
 	'ui.router','myCtrls','myServices','myDirectives','ui.bootstrap'
 ]);
 myApp.config(function($stateProvider, $urlRouterProvider) {
@@ -38,6 +38,12 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         })
         
        
+          //通知公告
+          .state('index.manager.upload', {
+            url: '/upload',
+            templateUrl: 'tpls/index.upload.jsp'
+        })
+        
          
          //通知公告
           .state('index.manager.changepsw', {

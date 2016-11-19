@@ -21,6 +21,17 @@
    <listener>
       <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
    </listener>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>servlet.upload</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>/servlet/upload</url-pattern>
+  </servlet-mapping>
    
   <filter>
     <filter-name>struts2</filter-name>

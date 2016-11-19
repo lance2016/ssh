@@ -124,7 +124,7 @@ public class UploadFileAction extends ActionSupport
 	    if (!dir.exists()) {
 	      dir.mkdir();
 	    }
-	    if (this.uploadFile.length() > 51200L) {
+	    if (this.uploadFile.length() > 5120000L) {
 	      this.message = "图片太大,请选择小于50K的图片";
 	      return "success";
 	    }

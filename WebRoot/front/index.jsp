@@ -25,7 +25,7 @@
 						<c:if test="${aa.link=='#'}">
 							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}" style="text-decoration:none">${aa.name}</a></li>
 						</c:if>
-						<c:if test="${aa.link!='#'}">
+						<c:if test="${aa.link!='#'&&aa.link!='static'}">
 							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
 						</c:if>
 					</c:forEach>

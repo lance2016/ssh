@@ -8,13 +8,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<form role="form">
 		<div class="form-group">
 				<label>选择栏目</label>
-				<select class="form-control w200 mt10" ng-model="parentid">
-					<option value="Z0">学院动态</option>
-					<option value="Z1">通知公告</option>
-					<option value="Z2">学生工作</option>
-					<option value="Z3">就业工作</option>
-					<option value="Z4">学术动态</option>
-					<option value="A0">学院简介</option>
+				<select   class="form-control w200 mt10" ng-model="parentid">
+					
+					<option ng-repeat="nav in navs" value="{{nav.id}}">{{nav.name}}</option>
+					
 				</select>
 			</div>		
 	    <div class="form-group">
@@ -25,8 +22,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  
 	  	
 	   <div class="form-group">
-		  <label for="name">链接</label>
-		  <input type="text" class="form-control"  disabled ng-model="link"
+		
+		  <input type="text" class="form-control" ng-show="disabled" disabled ng-model="link"
 			 placeholder="请输入链接">
 	   </div>
 	   

@@ -3,7 +3,12 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
+	
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
    <constant name="struts.objectFactory" value="spring" />
+   	<constant name="struts.custom.i18n.resources" value="upload"></constant>
+	<!-- 常量配置的优先级高 -->
+	<constant name="struts.multipart.maxSize" value="5242880000"></constant>
    <package name="book"  extends="struts-default" namespace="/">
    	<global-results>
    	     <result name="updatesuccess" type="redirectAction">user_query</result>
@@ -19,7 +24,35 @@
               <result name="success">/app/tpls/postpic.jsp</result>
     </action>   
     
-   
+    
+      <action name="upload" class="uploadAction" method="upload">
+    		<interceptor-ref name="defaultStack">
+    			<!-- 更改fileUpload拦截器的参数 -->
+    			<param name="fileUpload.maximumSize">32217687</param>
+    			<param name="fileUpload.allowedExtensions">.jsp,.png,.zip,.7z,.txt,.ppt,.excel,.jpg,.pdf,.doc,.docx,.mp3,.mp4</param>
+    		</interceptor-ref>
+    	
+    		<result name="success" type="redirect" >
+    				/app/index.jsp
+    		</result>
+    		<result name="input">/app/index.jsp</result>
+    		
+    </action>   
+    
+    <action name="download" class="downLoadAction" method="download">
+    		<!-- 下载时由一个结果类型负责的 -->
+    		<result type="stream">
+    			<!-- 靠配置结果类型的参数 -->
+    			<param name="inputName">photoIn</param>
+    			<!-- 告知客户端以下载的方式打开 -->
+    			<!-- 动态获取下载的文件名：在该配置文件中使用OGNL表达式 。就相当于调用当前动作的getFilename方法-->
+    			<param name="contentDisposition">attachment;filename=${filename}</param>
+    			<!-- 告知客户端文件的MIME类型 -->
+    			<param name="contentType">application/octet-stream</param>
+    		</result>
+            
+    </action>   
+    
 	 <action name="querycontent" class="allContentAction" method="query">
 	 	<result name="querysuccess">/front/index.jsp</result>
 	 </action>
@@ -39,7 +72,8 @@
     
     
     
-    <package name="ajax" extends="json-default" namespace="/ajax"> 
+    <package name="ajax" extends="json-default" namespace="/ajax">
+   
     	<action name="*" class="allContentAction" method="{1}">  
             <result name="success" type="json">
             	<param name="root">result</param>
@@ -47,6 +81,8 @@
         </action>
              
              
+    
+    
          <action name="changepsw" class="userAction" method="changepsw">  
             <result name="success" type="json">
             	<param name="root">result</param>

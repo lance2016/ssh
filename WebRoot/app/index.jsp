@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 ?>
 <!doctype html>
 <html ng-app="myApp">

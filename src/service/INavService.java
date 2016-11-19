@@ -14,4 +14,7 @@ public interface INavService {
 	public abstract List<Nav> queryone(String id) ;
 	public abstract List<Nav> querybyparentid(String id) ;
 	
+	public abstract List<Nav> findnav() ;
+
+	public abstract List<Nav> findall() ;
 }

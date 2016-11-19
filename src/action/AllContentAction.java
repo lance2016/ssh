@@ -39,16 +39,17 @@ public class AllContentAction extends ActionSupport  {
 	    
 	    public String list() throws IOException{
 	    	String id=request.getParameter("id");
-			  Map<String,Object> map = new HashMap<String,Object>();
+			
 			  try {
 					AllContentList= AllContentService.querybyparentid(id);//导航栏
 				} catch (Exception e) {
 						e.printStackTrace();	
 				}
+			  Map<String,Object> map = new HashMap<String,Object>();
 			     map.put("AllContentList", AllContentList);         
 		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
 		        result = json.toString();//给result赋值，传递给页
-		        System.out.println(result);
+		      //  System.out.println(result);
 		
 		
 		return "success";
@@ -113,12 +114,11 @@ public class AllContentAction extends ActionSupport  {
 				String time=request.getParameter("time");
 				int important=Integer.parseInt(request.getParameter("important"));
 				String parentid=request.getParameter("parentid");
-				
-				
+				System.out.println(parentid);
 				AllContent.setTitle(title);
 				AllContent.setContent(content);
 				AllContent.setImportant(important);
-			
+				AllContent.setLink("1");
 				AllContent.setParentid(parentid);
 				AllContent.setTime(time);
 			
@@ -131,6 +131,9 @@ public class AllContentAction extends ActionSupport  {
 			}
 
 		}
+	    
+	    
+	    
 		public String update() {
 			try {
 				
@@ -176,7 +179,26 @@ public class AllContentAction extends ActionSupport  {
 			}
 
 		}
-
+		public String findnav(){
+			NavList=NavService.findnav();
+			  Map<String,Object> map = new HashMap<String,Object>();
+			     map.put("NavList", NavList);         
+		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+		        result = json.toString();//给result赋值，传递给页
+			return "success";
+			
+		}
+		
+		
+		public String findall(){
+			NavList=NavService.findall();
+			  Map<String,Object> map = new HashMap<String,Object>();
+			     map.put("NavList", NavList);         
+		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+		        result = json.toString();//给result赋值，传递给页
+			return "success";
+			
+		}
 		
 		public INavService getNavService() {
 			return NavService;

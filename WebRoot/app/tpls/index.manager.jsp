@@ -12,6 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="list-group" ng-controller="changeBgColor">
                     <a ui-sref="#" class="list-group-item active" >账号管理</a>
 					<a ui-sref="index.manager.changepsw" class="list-group-item" ng-click="change($event)">修改密码</a>
+					<a ui-sref="index.manager.upload" class="list-group-item" ng-click="change($event)">上传文件</a>
 		          <!--   <a ui-sref="index.manager.changename" class="list-group-item" ng-click="change($event)">修改账户</a> -->
 				</div>
             </div>

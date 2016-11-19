@@ -32,6 +32,7 @@
 						<c:if test="${aa.link!='#'}">
 							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
 						</c:if>
+						
 					</c:forEach>
 				</ul>
 				
@@ -57,8 +58,12 @@
 						<c:if test="${r.link=='#'}">
 							${r.content}
 						</c:if>
-						<c:if test="${r.link!='#' }">
+						<c:if test="${r.link=='1' }">
 							<a href="qf_query?id=${r.id}&add=${locationList.get(0).getName()}&leftid=${navLeftList.get(0).getId()}">${r.title }</a>
+						</c:if>
+						
+						<c:if test="${r.link!='1'&&r.link!='#'}">
+							<li><a href="${r.link}">${r.title }</a></li>
 						</c:if>
 							<!--<a href="qf_query?id=${r.id}&add=${locationList.get(0).getName()}&leftid=${navLeftList.get(0).getId()}">  </a>-->
 						</div>

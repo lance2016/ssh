@@ -63,6 +63,24 @@ public class NavServiceImpl implements INavService {
 		 Query query=s.createQuery(" from Nav where Id='"+id+"'");
 		 return  query.list();
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List<Nav> findnav()  {
+		 Session s =  sessionFactory.getCurrentSession();
+		 Query query=s.createQuery(" from Nav where parentid!='0' and link='#' order by Id asc");
+		 return  query.list();
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List<Nav> findall()  {
+		 Session s =  sessionFactory.getCurrentSession();
+		 Query query=s.createQuery(" from Nav where parentid!='0' and link!='static' order by Id asc");
+		 return  query.list();
+	}
 
 	@Override
 	public void delete(String id) {
