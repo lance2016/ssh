@@ -87,6 +87,14 @@ public class NavServiceImpl implements INavService {
 		 return  query.list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation=Propagation.NOT_SUPPORTED)
+	public List<Nav> findstaticnav()  {
+		 Session s =  sessionFactory.getCurrentSession();
+		 Query query=s.createQuery(" from Nav where parentid!='0' and parentid!='-2' and parentid!='-1' and link='static' order by Id asc");
+		 return  query.list();
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)

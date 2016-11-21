@@ -100,11 +100,23 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        
+
+   
          .state('index.load', {
             url: '/load',
             views: {
                 'main@index': {
                     templateUrl: 'tpls/content.articlelist.jsp'
+                }
+            }
+        })
+        
+         .state('index.loadstatic', {
+            url: '/loadstatic',
+            views: {
+                'main@index': {
+                    templateUrl: 'tpls/content.static.articlelist.jsp'
                 }
             }
         })

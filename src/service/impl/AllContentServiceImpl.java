@@ -41,9 +41,6 @@ public class AllContentServiceImpl implements IAllContentService {
 	
 		
 	}
-
-
-	
 	
 	public void update(AllContent AllContent)  {
 		sessionFactory.getCurrentSession().update(AllContent);

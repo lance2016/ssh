@@ -604,6 +604,110 @@ $scope.getnum("C0");
 	}
 ]);
 
+//加载文章发布板块
+myCtrls.controller('LoadStaticArticle',['$scope','$http','$window',
+	function($scope,$http,$window){
+		//默认设置
+	var num=6;
+	 $scope.maxSize = 10;    // 显示最大页数
+$scope.totalItems = 10000; // 总条数
+$scope.currentPage = 1;//当前页取值
+$scope.bigTotalItems = 20;
+$scope.bigCurrentPage = 1;
+
+	
+	$scope.find=function(){
+		$http({
+			method:'POST',
+			url:"/ssh/ajax/findstaticnav.action",
+		}).success(function(data,status,headers,config){
+			
+			data = eval("("+data+")"); 
+			data = angular.fromJson(data);
+			$scope.navs=data.NavList;
+		}).error(function(){
+		
+		}); 
+	}
+	$scope.find();
+	
+	
+	
+	
+$scope.getnum = function(id){
+	$http({
+		method:'POST',
+		url:"/ssh/ajax/getNum.action",
+		params:{table:"AllContent",id:id}
+	}).success(function(data,status,headers,config){
+		data = eval("("+data+")"); 
+		data = angular.fromJson(data);
+		saveData = data;
+		num=data.num;
+		$scope.n=num;
+		
+	}).error(function(){
+
+	}); 
+}
+
+$scope.getnum("C0");
+
+      $scope.value = 'C0';
+		$scope.LoadById = function(id){		
+			//向后台请求是否包括头条的参数
+			//var flag = 1;
+			$scope.getnum(id);
+			$scope.value = id;
+			$http({
+				method:'POST',
+				url:"/ssh/ajax/listpage.action",
+				params:{table:"AllContent",id:id,start:($scope.bigCurrentPage-1)*5,size:5}
+			}).success(function(data,status,headers,config){
+				data = eval("("+data+")"); 
+				data = angular.fromJson(data);
+				saveData = data;
+				$scope.articles =data.AllContentList;
+				$scope.bigTotalItems = (num/5)*10;//默认每页10条，此处转换为每页4条		
+			//	saveData=data;
+			}).error(function(data,status,headers,config){
+			}); 
+		}
+		$scope.LoadById($scope.value);
+		
+		var watch = $scope.$watch('bigCurrentPage',function(newValue,oldValue, scope){
+			setTimeout(function(){$scope.LoadById($scope.value);},500);});
+
+		
+
+		
+		//删除文章
+		$scope.Delete=function(id){
+			var r = alertify.confirm("确认删除 <strong>"+id+"</strong>吗 ?",function (e){
+				if (e) {
+					$http({
+						method:'GET',
+						url:'/ssh/ajax/delete.action',
+						params: {id:id}
+					}).success(function(data,status,headers,config){
+						$scope.LoadById($scope.value);
+						alertify.success("已删除");						
+					}).error(function(data,status,headers,config){
+						alertify.error("删除失败,请检查网络连接");
+				});						
+				} else {					
+					alertify.error("已取消");
+				}
+			}); 	
+		}     
+	}
+]);
+
+
+
+
+
+
 
 //搜索
 myApp.controller('SearchCtrl',function SearchCtrl($scope, $http) {

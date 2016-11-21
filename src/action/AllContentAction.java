@@ -257,6 +257,16 @@ public class AllContentAction extends ActionSupport  {
 			
 		}
 		
+		public String findstaticnav(){
+			NavList=NavService.findstaticnav();
+			  Map<String,Object> map = new HashMap<String,Object>();
+			     map.put("NavList", NavList);         
+		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+		        result = json.toString();//给result赋值，传递给页
+			return "success";
+			
+		}
+		
 		//查找所有导航栏元素
 		public String findall(){
 			NavList=NavService.findall();
