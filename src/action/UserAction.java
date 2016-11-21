@@ -1,24 +1,18 @@
 package action;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import net.sf.json.JSONObject;
-
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
 import service.IUserService;
-import sun.misc.BASE64Encoder;
 import vo.User;
 
 import com.opensymphony.xwork2.ActionSupport;

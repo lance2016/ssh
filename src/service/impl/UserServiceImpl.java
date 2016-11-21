@@ -33,7 +33,7 @@ public class UserServiceImpl implements IUserService {
 	public void update(int id,String password)  {
 		 Session session =  sessionFactory.getCurrentSession();
 		  Query query = session.createQuery("update User set password='"+password+"' where Id="+id+"");
-		  int n = query.executeUpdate();
+		 query.executeUpdate();
 
 	}
 

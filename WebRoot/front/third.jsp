@@ -11,6 +11,25 @@
     	<script src="${pageContext.request.contextPath}/front/js/jquery-2.2.2.min.js"></script>
     	<script src="${pageContext.request.contextPath}/front/js/bootstrap.min.js"></script>
 </head>
+
+<script>
+	$(function(){
+		$("[id^='a_']").mouseover(function(){
+			var id = this.id;
+			id = 'a'+id;
+			$('#'+id).show();
+		});
+		
+		$("[id^='a_']").mouseleave(function(){
+			var id = this.id;
+			id = 'a'+id;
+			$('#'+id).hide();
+		});
+				
+	});
+
+</script>
+
 <body >
 <div class="container_page">
 	<div class="header" >
@@ -20,20 +39,44 @@
 	<div id="banner" class="banner-list ">
 			
 				<ul>
-					<li><a href="/ssh/init" style="text-decoration:none">首页</a></li>
-					<c:forEach var="aa" items="${navList}">
+					<li><a href="/ssh/init" style="text-decoration:none"  class="nav navbar-nav">首页</a></li>
+			
+			<c:forEach var="aa" items="${navList}">
 						<c:if test="${aa.link=='#'}">
-							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}&pagenum=1" style="text-decoration:none">${aa.name}</a></li>
+							<li  class="dropdown" id="a_${aa.id}">
+							
+							<a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}&pagenum=1"  class="dropdown-toggle" style="text-decoration:none">
+							${aa.name}
+							</a>
+								<ul class="dropdown-menu" id="aa_${aa.id }" style="margin-left:-4.5rem;margin-top:-0px">
+								<c:forEach var="twoa" items="${navListTwo}">
+									<c:if test="${twoa.parentid==aa.id}">
+									<li style="width:100%;text-align:center">
+									<a id="action-1" href="${pageContext.request.contextPath}/qsf_changequery?leftid=${twoa.id}&pagenum=1"
+										style="color:black;width:100%;text-align:center;text-decoration:none">	
+										
+										<p style="width:100%;text-align:center">${twoa.name }</p>
+										</a>
+									</li>
+									
+									
+									</c:if>
+								</c:forEach>
+								</ul>
+								
+							</li>
+							
 						</c:if>
-						<c:if test="${aa.link!='#'}">
+						<c:if test="${aa.link!='#'&&aa.link!='static'}">
 							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
 						</c:if>
-					</c:forEach>
+			</c:forEach>
+			
 				</ul>
 	</div>	
 	<div style="height:800px">
 	<div class="col-md-12" >
-			<p class="text-right">当前位置：<a href="init">首页</a> | <a href="qsf_changequery?leftid=${leftid}">${add }</a> | ${allContentList.get(0).getTitle()}</a></p>
+			<p class="text-right">当前位置：<a href="init">首页</a> | <a href="qsf_changequery?leftid=${leftid}&pagenum=1">${add }</a> | ${allContentList.get(0).getTitle()}</a></p>
 			<c:forEach var="m" items="${allContentList}">
 				<h2 class="text-center">${m.title}</h2>
 				<p class="text-center">发布时间 ${m.time }  浏览次数 ${m.visitedtime }</p>

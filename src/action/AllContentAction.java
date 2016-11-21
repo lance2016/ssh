@@ -1,13 +1,13 @@
 package action;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
@@ -34,6 +34,7 @@ public class AllContentAction extends ActionSupport  {
 	  
 	    List<Nav> NavList;
 	    List<AllContent>AllContentList;
+	    private Nav Nav=new Nav();
 	    private AllContent AllContent=new AllContent();
 	    String result;
 	    
@@ -92,7 +93,6 @@ public class AllContentAction extends ActionSupport  {
 	    
 	    public String queryContent()throws IOException{
 	    	int id=Integer.parseInt(request.getParameter("id"));
-	    	
 		  Map<String,Object> map = new HashMap<String,Object>();
 		  try {
 				AllContentList= AllContentService.queryone(id);//导航栏
@@ -105,6 +105,10 @@ public class AllContentAction extends ActionSupport  {
 	       
 	return "success";
 	}
+	    
+	    
+	    
+	    
 	    
 	  
 	    
@@ -155,6 +159,7 @@ public class AllContentAction extends ActionSupport  {
 				AllContent.setParentid(parentid);
 				AllContent.setTime(time);
 				AllContent.setVisitedtime(visitedtime);
+				
 				AllContentService.update(AllContent);
 				//System.out.println(AllContent.getContent());
 				return "success";
@@ -167,7 +172,49 @@ public class AllContentAction extends ActionSupport  {
 		}
 
 		
-	
+		//updatenav
+		public String updatenav() {
+			try {
+				
+				String id=request.getParameter("id");
+				String name=request.getParameter("name");
+				String parentid=request.getParameter("parentid");
+				String link=request.getParameter("link");
+			
+				Nav.setId(id);
+				Nav.setName(name);
+				Nav.setParentid(parentid);
+				Nav.setLink(link);
+				
+				NavService.update(Nav);
+				return "success";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "error";
+			}
+
+		}
+
+		public String addnav() {
+			try {
+				
+				String id=request.getParameter("id");
+				String name=request.getParameter("name");
+				String parentid=request.getParameter("parentid");
+				String link=request.getParameter("link");
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+name+link);
+				System.out.println("++++++++++++++++++id:"+id+"           "+parentid);				
+				NavService.add(id,name,link,parentid);
+				return "success";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "error";
+			}
+
+		}
+
 		public String delete() {
 			int id=Integer.parseInt(request.getParameter("id"));
 			try {
@@ -180,6 +227,26 @@ public class AllContentAction extends ActionSupport  {
 			}
 
 		}
+		
+		
+		public String deletenav(){
+				String id=request.getParameter("id");
+				//System.out.println("++++++++++++++++++"+id);
+				try {
+					NavService.deletenavbyparentid(id);
+					AllContentService.deletebyparentid(id);//删除二级节点的内容
+					NavService.delete(id);//删除二级节点的情况
+					
+					result="success";
+					return "success";
+				} catch (Exception e) {
+					e.printStackTrace();
+					return "error";
+				}
+		}
+		
+		
+		
 		public String findnav(){
 			NavList=NavService.findnav();
 			  Map<String,Object> map = new HashMap<String,Object>();
@@ -190,7 +257,7 @@ public class AllContentAction extends ActionSupport  {
 			
 		}
 		
-		
+		//查找所有导航栏元素
 		public String findall(){
 			NavList=NavService.findall();
 			  Map<String,Object> map = new HashMap<String,Object>();
@@ -200,6 +267,44 @@ public class AllContentAction extends ActionSupport  {
 			return "success";
 		}
 		
+		
+		//加载所有导航栏元素
+		public String  loadall(){
+			NavList=NavService.loadall();
+			  Map<String,Object> map = new HashMap<String,Object>();
+			     map.put("NavList", NavList);         
+		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+		        result = json.toString();//给result赋值，传递给页
+			return "success";
+			
+		}
+		
+		//加载一个节点
+		public String queryone(){
+			String id=request.getParameter("id");
+			NavList=NavService.queryone(id);
+			  Map<String,Object> map = new HashMap<String,Object>();
+			     map.put("NavList", NavList);         
+		      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+		        result = json.toString();//给result赋值，传递给页
+		        System.out.println(result);
+			return "success";
+		}
+		
+	
+		
+		//搜索
+		public String search(){
+			String keywords=request.getParameter("keywords");
+			AllContentList=AllContentService.search(keywords);
+			 Map<String,Object> map = new HashMap<String,Object>();
+		     map.put("AllContentList", AllContentList);         
+	      JSONObject json = JSONObject.fromObject(map);//将map对象转换成json类型数据
+	      result = json.toString();//给result赋值，传递给页
+		//	System.out.println("+++++++++++++++++++"+keywords);
+			
+			return "success";
+		}
 		public INavService getNavService() {
 			return NavService;
 		}
@@ -243,14 +348,21 @@ public class AllContentAction extends ActionSupport  {
 		public String getResult() {
 			return result;
 		}
+		
 
 		public void setResult(String result) {
 			this.result = result;
 		}
 
+		public Nav getNav() {
+			return Nav;
+		}
+
+		public void setNav(Nav nav) {
+			Nav = nav;
+		}
 
 	
-
 	    
 	    
 }

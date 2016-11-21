@@ -1,10 +1,9 @@
 package service.impl;
 
 import java.math.BigDecimal;
+
 import java.util.List;
-
 import javax.annotation.Resource;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +20,7 @@ public class AllContentServiceImpl implements IAllContentService {
 
 	@Resource
 	SessionFactory sessionFactory;
-	public void add(AllContent AllContent)   {
+	public void add(AllContent AllContent) {
 		sessionFactory.getCurrentSession().save(AllContent);
 		
 	}
@@ -30,7 +29,21 @@ public class AllContentServiceImpl implements IAllContentService {
 		 Session s =  sessionFactory.getCurrentSession();
 		 s.delete(s.load(AllContent.class, id));
 	}
+	
 
+	
+	//删除父节点为parentid的allcontent记录
+	public void deletebyparentid(String parentid) {
+		// TODO Auto-generated method stub]
+		 Session session =  sessionFactory.getCurrentSession();
+		String hql = "delete from AllContent t where t.parentid='"+parentid+"'";
+		session.createQuery(hql).executeUpdate();
+	
+		
+	}
+
+
+	
 	
 	public void update(AllContent AllContent)  {
 		sessionFactory.getCurrentSession().update(AllContent);
@@ -44,6 +57,10 @@ public class AllContentServiceImpl implements IAllContentService {
 		 Query query=s.createQuery(" from AllContent");
 		 return  query.list();
 	}
+	
+	
+	
+
 	
 	
 
@@ -97,6 +114,13 @@ public class AllContentServiceImpl implements IAllContentService {
 		 query.setMaxResults(size); //查询多少条
 		 return  query.list();
 	}
+	//搜索
+	@SuppressWarnings("unchecked")
+	public List<AllContent> search(String keywords) {
+		Session s =  sessionFactory.getCurrentSession();
+		 Query query=s.createQuery(" from AllContent"+"  where title like '%"+keywords+"%' or content like '%"+keywords+"%'");
+		 return  query.list();
+	}
 	
 	//查询总数
 	public int getnum(String table,String id) {
@@ -107,6 +131,8 @@ public class AllContentServiceImpl implements IAllContentService {
 		 return count;
 	}
 
+	
+	
 	
 
 }

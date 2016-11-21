@@ -14,7 +14,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a ui-sref="index.indexconfig.welcome" ng-click="change($event)" class="a-color-active active">首页</a>
         </li>
         <li>
-            <a ui-sref="index.load" ng-click="change($event)" class="a-color">加载文章</a>
+            <a ui-sref="index.load" ng-click="change($event)" class="a-color">文章管理</a>
+        </li>
+         <li>
+            <a ui-sref="index.item" ng-click="change($event)" class="a-color">栏目管理</a>
+        </li>
+        <li>
+            <a ui-sref="index.search" ng-click="change($event)" class="a-color">搜索</a>
         </li>
         <li>
             <a ui-sref="index.manager" ng-click="change($event)" class="a-color">管理员设置</a>

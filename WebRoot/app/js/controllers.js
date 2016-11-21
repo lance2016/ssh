@@ -439,7 +439,7 @@ myCtrls.controller('Edit',['$stateParams','$scope','$http','$state','msgBox',
 			$http({
 				method:'POST',
 				url:"/ssh/ajax/queryContent",
-				params: {id:$stateParams.id}//
+				params: {id:$stateParams.id}
 			}).success(function(data,status,headers,config){
 				data = eval("("+data+")"); 
 				data = angular.fromJson(data);
@@ -498,6 +498,11 @@ myCtrls.controller('Edit',['$stateParams','$scope','$http','$state','msgBox',
 
 	}
 ]);
+
+
+
+
+
 
 
 //加载文章发布板块
@@ -575,14 +580,6 @@ $scope.getnum("C0");
 			setTimeout(function(){$scope.LoadById($scope.value);},500);});
 
 		
-		
-
-		
-		
-		
-		
-		
-		
 
 		
 		//删除文章
@@ -606,6 +603,226 @@ $scope.getnum("C0");
 		}     
 	}
 ]);
+
+
+//搜索
+myApp.controller('SearchCtrl',function SearchCtrl($scope, $http) {
+	$scope.url = '/ssh/ajax/search.action'; // The url of our search
+	// The function that will be executed on button click (ng-click="search()")
+	$scope.search = function(){		
+		
+		$http({
+			method:'POST',
+			url:$scope.url,
+			params:{keywords:$scope.keywords}
+		}).success(function(data,status,headers,config){
+			data = eval("("+data+")"); 
+			data = angular.fromJson(data);
+			saveData = data;
+			$scope.articles =data.AllContentList;
+			if($scope.articles.length==0)
+				alertify.error("暂无搜索内容");
+			//$scope.bigTotalItems = (num/5)*10;//默认每页10条，此处转换为每页4条		
+		//	saveData=data;
+		}).error(function(data,status,headers,config){
+			
+		}); 
+		
+	}
+	
+	
+	//删除文章
+	$scope.Delete=function(id){
+		var r = alertify.confirm("确认删除 <strong>"+id+"</strong>吗 ?",function (e){
+			if (e) {
+				$http({
+					method:'GET',
+					url:'/ssh/ajax/delete.action',
+					params: {id:id}
+				}).success(function(data,status,headers,config){
+					$scope.search();
+					alertify.success("已删除");						
+				}).error(function(data,status,headers,config){
+					alertify.error("删除失败,请检查网络连接");
+			});						
+			} else {					
+				alertify.error("已取消");
+			}
+		}); 	
+	} 
+	
+	
+	
+	
+});
+
+
+
+
+///节点管理
+
+
+
+myCtrls.controller('item',['$scope','$http','$window',
+                       
+ function($scope,$http,$window){
+	
+	d = new dTree('d'); //创建树，名称为’d'（注意和树的对象变量名称要一致）
+
+	$scope.load=function(){
+		$http({
+			method:'POST',
+			url:"/ssh/ajax/loadall.action"
+		}).success(function(data,status,headers,config){
+			data = eval("("+data+")"); 
+			data = angular.fromJson(data);
+			saveData = data;
+		//	d.add('0','-1','导航栏',"/ssh/app/index.jsp#/index/item/edititem/"); 
+			for(var i=0;i<data.NavList.length;i++){
+			d.add(  data.NavList[i].id,   data.NavList[i].parentid, data.NavList[i].name, '/ssh/app/index.jsp#/index/item/edititem/'+data.NavList[i].id);
+			}
+			var x=document.getElementById("tx");
+			  x.innerHTML=d;
+			
+		}).error(function(data,status,headers,config){
+		}); 
+		
+		
+	} 
+
+	$scope.load();
+}
+]);
+
+
+
+
+myCtrls.controller('edititem',['$stateParams','$scope','$state','$http','$window',
+ function($stateParams,$scope,$state,$http,$window){
+	//alert($stateParams.id.length);通过id长度判断
+	$scope.loadson=function(){
+		$http({
+			method:'POST',
+			url:"/ssh/ajax/queryone.action",
+			params: {id:$stateParams.id}
+		}).success(function(data,status,headers,config){
+			data = eval("("+data+")"); 
+			data = angular.fromJson(data);
+			saveData = data;			
+			$scope.navs=data.NavList;			
+		}).error(function(data,status,headers,config){
+		}); 
+	}
+	$scope.loadson();		
+		//删除文章
+		$scope.Delete=function(id){
+			var r = alertify.confirm("确认删除 <strong>"+id+"</strong>及其子类节点吗 ?",function (e){
+				if (e) {
+					$http({
+						method:'GET',
+						url:'/ssh/ajax/deletenav.action',
+						params: {id:$stateParams.id}
+					}).success(function(data,status,headers,config){
+						alertify.success("已删除");
+						setTimeout(function(){history.go(0)},500);
+						//http://localhost:8080/ssh/app/index.jsp#/index/item/edititem/A
+					}).error(function(data,status,headers,config){
+						alertify.error("删除失败,请检查网络连接");
+				});						
+				} else {					
+					alertify.error("已取消");
+				}
+			}); 	
+			
+		} 
+		
+		$scope.Add=function(id){
+			if(id.length<2){
+				$state.go('index.item.add',{id:id});
+			}	
+			else
+				alertify.error("请到文章管理栏目增加文章");
+		}
+		
+}
+]);
+
+myCtrls.controller('addnav',['$stateParams','$scope','$http','$state','msgBox',
+  function($stateParams,$scope,$http,$state,msgBox){ 
+	$scope.parentid=$stateParams.id;
+	
+	 $scope.submit = function(){
+		 alert($scope.id+" "+$scope.name+" "+$scope.parentid+" "+$scope.link);
+			$http({
+				method:'POST',
+				url:"/ssh/ajax/addnav.action",
+				params: {
+					id:$scope.id,
+					name:$scope.name,
+					link:$scope.link,
+					parentid:$scope.parentid
+					}
+			}).success(function(data,status,headers,config){
+					if(data!="1"){
+						alertify.success("增加成功");
+						$state.go("index.item");
+					}
+						
+					else{
+						alertify.error("更新失败");
+					}
+			}).error(function(){
+				
+			}); 
+			
+				
+		setTimeout(function(){history.go(0)},500);
+		}
+
+}
+]);
+
+
+//编辑导航栏
+myCtrls.controller('Editnav',['$stateParams','$scope','$http','$state','msgBox',
+	function($stateParams,$scope,$http,$state,msgBox){
+	$scope.id=$stateParams.id;
+	$scope.name=$stateParams.name;
+	$scope.type=$stateParams.type;
+	$scope.parentid=$stateParams.parentid;
+
+		 $scope.Submit = function(id,name,type,parentid){	
+			$http({
+				method:'POST',
+				url:"/ssh/ajax/updatenav.action",
+				params: {
+					id:id,
+					name:name,
+					link:type,
+					parentid:parentid
+					}
+			}).success(function(data,status,headers,config){
+					if(data!="1"){
+						alertify.success("更新成功");
+						$state.go("index.item");
+
+					}
+						
+					else{
+						alertify.error("更新失败");
+					}
+			}).error(function(){
+				
+			}); 
+			
+				
+		setTimeout(function(){history.go(0)},500);
+		}
+
+	}
+]);
+
+
 
 
 //写文章

@@ -17,7 +17,8 @@
     <script src="framework/jquery-1.12.1.min.js"></script>	
     <script src="framework/bootstrap.min.js"></script>
 	<script src="framework/alertify.min.js"></script>	<!--提示消息-->
-
+	<link rel="StyleSheet" href="css/dtree.css" type="text/css" />
+	<script type="text/javascript" src="js/dtree.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
 

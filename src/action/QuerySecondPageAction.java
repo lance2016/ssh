@@ -34,7 +34,9 @@ public class QuerySecondPageAction {
 	   	IAllContentService AllContentService;
 	   List<Nav> NavList;
 	   List<Nav>NavLeftList;
+	   List<Nav>NavListTwo;
 	   List<Nav> LocationList;
+	   
 	   List<AllContent>AllContentList;
 	   private static String id;
 	   Nav Nav;
@@ -42,22 +44,25 @@ public class QuerySecondPageAction {
 	   private String result;
 	   private Map<String, Object> dataMap;  
 	   
-	   
+
 		public String query() {
 			HttpSession s = request.getSession();
 			 id=request.getParameter("id");
 			 int pagesize=2;
 			 int pagenum=Integer.parseInt(request.getParameter("pagenum"));
 			try {
+				
 				NavLeftList=NavService.querybyparentid(id);
 				
 				NavList = NavService.query();//导航栏
-				
+				NavListTwo=NavService.findtwo();
 				LocationList=NavService.queryone(NavLeftList.get(0).getId());//查询位置
 				
 				
 				AllContentList=AllContentService.list("AllContent", NavLeftList.get(0).getId(), (pagenum-1)*pagesize, pagesize);//最初加载左侧第一个的内容
-				
+				if(AllContentList.size()==0){
+					AllContentList=null;
+				}
 				
 				int totalNum=AllContentService.getnum("AllContent", NavLeftList.get(0).getId());//总条数
 				int pageCount=(totalNum+1)/2;//总页数
@@ -77,17 +82,21 @@ public class QuerySecondPageAction {
 		public String changequery() {
 		
 			int pagesize=2;//每页两条
+			NavListTwo=NavService.findtwo();
 			HttpSession s = request.getSession();
 			leftid=request.getParameter("leftid");//左侧选择的id
 			int pagenum=Integer.parseInt(request.getParameter("pagenum"));
 			try {
 					NavList = NavService.query();//导航栏
-					
+					id= leftid.substring(0,1);
 					NavLeftList=NavService.querybyparentid(id);
 					
 					LocationList=NavService.queryone(leftid);
 					
 					AllContentList=AllContentService.list("AllContent",leftid,(pagenum-1)*pagesize,pagesize);
+					if(AllContentList.size()==0){
+						AllContentList=null;
+					}
 					int totalNum=AllContentService.getnum("AllContent", leftid);//总条数
 					int pageCount=(totalNum+1)/2;//总页数
 					int pageNo=pagenum;//当前页
@@ -107,6 +116,14 @@ public class QuerySecondPageAction {
 		
 
 		
+
+		public List<Nav> getNavListTwo() {
+			return NavListTwo;
+		}
+
+		public void setNavListTwo(List<Nav> navListTwo) {
+			NavListTwo = navListTwo;
+		}
 
 		public String getResult() {
 			return result;

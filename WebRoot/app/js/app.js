@@ -28,6 +28,47 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         })
         
         
+        	.state('index.item', {
+            url: '/item',
+            views: {
+                'main@index': {
+                    templateUrl: 'tpls/item.jsp'
+                }
+            }
+        })
+        
+        
+         //通知公告
+        .state('index.item.edititem', {
+            url: '/edititem/:id',
+            templateUrl: 'tpls/item.edit.jsp'
+        })
+        
+        
+        
+           //编辑
+          .state('index.item.rewrite', {
+        	url: '/navrewrite/:id/:name/:parentid/:type',
+            templateUrl: 'tpls/item.rewrite.jsp'
+        })
+        
+        
+            //编辑
+          .state('index.item.add', {
+        	url: '/navadd/:id',
+            templateUrl: 'tpls/item.add.jsp'
+        })
+        
+        
+        .state('index.search', {
+            url: '/search',
+            views: {
+                'main@index': {
+                    templateUrl: 'tpls/index.search.jsp'
+                }
+            }
+        })
+        
         .state('index.manager', {
             url: '/indexmanager',
             views: {
@@ -44,7 +85,6 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'tpls/index.upload.jsp'
         })
         
-         
          //通知公告
           .state('index.manager.changepsw', {
             url: '/changepsw',

@@ -11,26 +11,76 @@
     	<script src="${pageContext.request.contextPath}/front/js/jquery-2.2.2.min.js"></script>
     	 <script src="${pageContext.request.contextPath}/front/js/bootstrap.min.js"></script>
 </head>
+
+
+<script>
+	$(function(){
+		$("[id^='a_']").mouseover(function(){
+			var id = this.id;
+			id = 'a'+id;
+			$('#'+id).show();
+		});
+		
+		$("[id^='a_']").mouseleave(function(){
+			var id = this.id;
+			id = 'a'+id;
+			$('#'+id).hide();
+		});
+				
+	});
+
+</script>
+
+
+
 <body>
+
 <div class="container_page">
 	<div class="header" >
 		<img src="${pageContext.request.contextPath}/front/images/head.jpg"  >
 	</div>
-
 	<div id="banner" class="banner-list ">
 			
-				<ul>
-					<li><a href="#" style="text-decoration:none">首页</a></li>
-					<c:forEach var="aa" items="${navList}">
+				
+		<ul>
+			<li><a href="#" style="text-decoration:none"  class="nav navbar-nav">首页</a></li>
+			
+			<c:forEach var="aa" items="${navList}">
 						<c:if test="${aa.link=='#'}">
-							<li><a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}&pagenum=1" style="text-decoration:none">${aa.name}</a></li>
+							<li  class="dropdown" id="a_${aa.id}">
+							
+							<a href="${pageContext.request.contextPath}/qsf_query?id=${aa.id}&pagenum=1"  class="dropdown-toggle" style="text-decoration:none">
+							${aa.name}
+							</a>
+								<ul class="dropdown-menu" id="aa_${aa.id }" style="margin-left:-4.5rem;margin-top:-0px">
+								<c:forEach var="twoa" items="${navListTwo}">
+									<c:if test="${twoa.parentid==aa.id}">
+									<li style="width:100%;text-align:center">
+									<a id="action-1" href="${pageContext.request.contextPath}/qsf_changequery?leftid=${twoa.id}&pagenum=1"
+										style="color:black;width:100%;text-align:center;text-decoration:none">	
+										
+										<p style="width:100%;text-align:center">${twoa.name }</p>
+										</a>
+									</li>
+									
+									
+									</c:if>
+								</c:forEach>
+								</ul>
+								
+							</li>
+							
 						</c:if>
 						<c:if test="${aa.link!='#'&&aa.link!='static'}">
 							<li><a href="${aa.link}" style="text-decoration:none">${aa.name}</a></li>
 						</c:if>
-					</c:forEach>
-				</ul>
+			</c:forEach>
+			
+			
+		</ul>
+			
 	</div>	
+	
 	<div class="content1">
 		<div class="col-md-7">
 		<!--  轮播-->
@@ -79,10 +129,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList1.get(0).getName()}</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=o&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(0).getParentid() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -112,10 +162,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList2.get(0).getName()}</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(1).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=p&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(1).getParentid() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -146,10 +196,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList3.get(0).getName()}</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(2).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=q&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(2).getParentid() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -177,10 +227,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList4.get(0).getName()}</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(3).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=r&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(3).getParentid() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -215,10 +265,10 @@
 			<table width="100%" border="0" cellpadding="0" cellspacing="0" background="${pageContext.request.contextPath}/front/images/mainmiddle1_4.gif">
 	 			<tr>
 				    <td width="14"><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_1.gif" width="14" height="23"></td>
-				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList5.get(0).getName()}</td>
+				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(4).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=s&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(4).getParentid() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -263,4 +313,10 @@
 </div>
   
 </body>
+<script>
+$(function(){
+
+	//$(".dropdown-toggle").dropdown('toggle');
+}); 
+</script>
 </html>

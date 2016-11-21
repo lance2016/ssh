@@ -18,11 +18,10 @@ public class InitAction {
   @Resource
   	IAllContentService AllContentService;
     List<Nav> NavList;
-    List<Nav> NavTitleList1;
-    List<Nav> NavTitleList2;
-    List<Nav> NavTitleList3;
-    List<Nav> NavTitleList4;
-    List<Nav> NavTitleList5;
+    List<Nav> NavListTwo;
+    List<Nav> NavTitleList;
+  
+    List<AllContent>AllContentList;
     List<AllContent>AllContentList1;
     List<AllContent>AllContentList2;
     List<AllContent>AllContentList3;
@@ -36,17 +35,17 @@ public class InitAction {
 	public String initindex() {
 
 		try {
+			
 			NavList=NavService.query();//导航栏
-			NavTitleList1=NavService.querybyparentid("o");
-			NavTitleList2=NavService.querybyparentid("p");
-			NavTitleList3=NavService.querybyparentid("q");
-			NavTitleList4=NavService.querybyparentid("r");
-			NavTitleList5=NavService.querybyparentid("s");
+			NavListTwo=NavService.findtwo();
+			NavTitleList=NavService.querybyparentid("Z");
 			AllContentList1=AllContentService.querybyparentid("Z0");//学院动态
 			AllContentList2=AllContentService.querybyparentid("Z1");//通知公告
 			AllContentList3=AllContentService.querybyparentid("Z2");//学生工作
 			AllContentList4=AllContentService.querybyparentid("Z3");//就业工作
 			AllContentList5=AllContentService.querybyparentid("Z4");//学术动态
+			
+
 			return "querysuccess";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -59,80 +58,53 @@ public class InitAction {
 	
 
 
-	public List<Nav> getNavTitleList1() {
-		return NavTitleList1;
+	public List<Nav> getNavListTwo() {
+		return NavListTwo;
 	}
 
 
 
 
 
-	public void setNavTitleList1(List<Nav> navTitleList1) {
-		NavTitleList1 = navTitleList1;
+	public void setNavListTwo(List<Nav> navListTwo) {
+		NavListTwo = navListTwo;
 	}
 
 
 
 
 
-	public List<Nav> getNavTitleList2() {
-		return NavTitleList2;
+	public List<AllContent> getAllContentList() {
+		return AllContentList;
 	}
 
 
 
 
 
-	public void setNavTitleList2(List<Nav> navTitleList2) {
-		NavTitleList2 = navTitleList2;
+	public void setAllContentList(List<AllContent> allContentList) {
+		AllContentList = allContentList;
 	}
 
 
 
 
 
-	public List<Nav> getNavTitleList3() {
-		return NavTitleList3;
+	
+
+
+
+
+	public List<Nav> getNavTitleList() {
+		return NavTitleList;
 	}
 
 
 
 
 
-	public void setNavTitleList3(List<Nav> navTitleList3) {
-		NavTitleList3 = navTitleList3;
-	}
-
-
-
-
-
-	public List<Nav> getNavTitleList4() {
-		return NavTitleList4;
-	}
-
-
-
-
-
-	public void setNavTitleList4(List<Nav> navTitleList4) {
-		NavTitleList4 = navTitleList4;
-	}
-
-
-
-
-
-	public List<Nav> getNavTitleList5() {
-		return NavTitleList5;
-	}
-
-
-
-
-
-	public void setNavTitleList5(List<Nav> navTitleList5) {
-		NavTitleList5 = navTitleList5;
+	public void setNavTitleList(List<Nav> navTitleList) {
+		NavTitleList = navTitleList;
 	}
 
 
