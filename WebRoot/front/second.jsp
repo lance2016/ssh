@@ -109,7 +109,7 @@
 							${r.content}
 						</c:if>
 						<c:if test="${r.link=='1' }">
-							<a href="qf_query?id=${r.id}&add=${locationList.get(0).getName()}&leftid=${navLeftList.get(0).getId()}">${r.title }</a>
+							<a href="qf_query?id=${r.id}&add=${locationList.get(0).getName()}&leftid=${locationList.get(0).getId()}">${r.title }</a>
 						</c:if>
 						
 						<c:if test="${r.link!='1'&&r.link!='#'}">

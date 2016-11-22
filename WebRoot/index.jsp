@@ -1,1 +1,1 @@
-this is index
+<a href="fileDownload.action?fileName=a.txt">点击此处下载</a>

@@ -35,6 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		     <option value="index">首页栏目</option>
 	    </select>
 	   
-	   <button ng-click="submit()">增加</button>
+	   <button class="btn btn-primary" style="margin-top:50px" ng-click="submit()">增加</button>
 	   
 </div>

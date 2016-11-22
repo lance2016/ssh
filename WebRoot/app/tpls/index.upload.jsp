@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
   	<s:actionerror/>
-    <form  style="padding:30px"; action="upload" method="post" enctype="multipart/form-data">
+    <form  style="padding:30px"; action="${pageContext.request.contextPath}/upload" method="post" enctype="multipart/form-data">
     	
     	
     	<input type="file" name="photo"  label="靓照"></s:file>

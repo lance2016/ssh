@@ -1,4 +1,4 @@
-package action;
+﻿package action;
 
 import java.io.File;
 import org.apache.commons.io.FileUtils;
@@ -48,7 +48,6 @@ public class UploadAction extends ActionSupport {
 		this.photoContentType = photoContentType;
 	}
 	
-	
 	public IAllContentService getAllContentService() {
 		return AllContentService;
 	}
@@ -63,7 +62,7 @@ public class UploadAction extends ActionSupport {
 		System.out.println(name+photoContentType+"          "+storeDirectory);
 		AllContent.setParentid("K0");
 		AllContent.setTitle(photoFileName);
-		AllContent.setLink("download.action?filename="+photoFileName);
+		AllContent.setLink("fileDownload.action?fileName="+photoFileName);
 		AllContentService.add(AllContent);
 		
 		return "success";

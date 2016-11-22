@@ -45,7 +45,7 @@ public class NavServiceImpl implements INavService {
 	@Transactional(propagation=Propagation.NOT_SUPPORTED)
 	public List<Nav> query()  {
 		 Session s =  sessionFactory.getCurrentSession();
-		 Query query=s.createQuery(" from Nav where parentid='0'");
+		 Query query=s.createQuery(" from Nav where parentid='0' order by Id asc");
 		 return  query.list();
 	}
 	

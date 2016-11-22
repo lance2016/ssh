@@ -1,7 +1,8 @@
-package action;
+﻿package action;
 
 import java.io.IOException;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -203,8 +204,19 @@ public class AllContentAction extends ActionSupport  {
 				String name=request.getParameter("name");
 				String parentid=request.getParameter("parentid");
 				String link=request.getParameter("link");
-				System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+name+link);
-				System.out.println("++++++++++++++++++id:"+id+"           "+parentid);				
+				System.out.println("+++++++++++++++++++++++++++-----------------------"+link);
+				System.out.println("+++++++++++++++++++++++++++-----------------------"+link.equals("static"));
+				//如果是静态页面，默认生成一个静态内容，便于修改
+				if(link.equals("static")){
+					AllContent.setLink("#");
+					AllContent.setParentid(id);
+					AllContent.setTitle(name);
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+					System.out.println("+++++++++++++++++++++++++++-----------------------");
+					AllContent.setTime(df.format(new Date()));
+					AllContentService.add(AllContent);
+				}
+							
 				NavService.add(id,name,link,parentid);
 				return "success";
 				

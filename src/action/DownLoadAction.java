@@ -1,11 +1,10 @@
 package action;
 
 import java.io.FileInputStream;
-
 import java.io.InputStream;
-import java.net.URLEncoder;
 
-import org.apache.commons.io.FilenameUtils;
+import javax.servlet.ServletContext;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -14,35 +13,72 @@ import com.opensymphony.xwork2.ActionSupport;
 @SuppressWarnings("serial")
 @Controller
 @Scope("request")
-public class DownLoadAction extends ActionSupport {
-	
-//	private InputStream in;//�п��ܳ���
-	private InputStream photoIn;//Ҫ���ص���Դ��������
-	private String filename;//���ص��ļ���
-	public String getFilename() {
-		return filename;
-	}
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
+public class DownLoadAction extends ActionSupport{
+	private static final long serialVersionUID = 1L; 
+	private String contentType;//指定下载文件的类型 
+	private long contentLength;//指定下载文件的长度限制
+	private String contentDisposition;//斤载文件的下载方式, 
+	private InputStream inputstream;//指定文件读数据流 private
+	private String fileName;
 
-	public InputStream getPhotoIn() {
-		return photoIn;
-	}
-
-	public void setPhotoIn(InputStream photoIn) {
-		this.photoIn = photoIn;
-	}
-
-	public String download() throws Exception{
+	public String execute()throws Exception{
+		contentType="application/octet-stream";
+		String name=java.net.URLEncoder.encode(fileName, "UTF-8");
+		contentDisposition="attachment;filename="+name;
+		ServletContext servletContext=ServletActionContext.getServletContext();
+		String fileNamefrom=servletContext.getRealPath("/files/"+fileName);
+		System.out.println(fileNamefrom);
+		System.out.println("filname   "+fileName);
+		inputstream=new FileInputStream(fileNamefrom);
+		System.out.println("input     "+inputstream);
+		contentLength=inputstream.available();
+		return SUCCESS;
 		
-		//����������ֵ
-		String realPath = ServletActionContext.getServletContext().getRealPath("files/"+filename);
-		filename = FilenameUtils.getName(realPath);
-		System.out.println(filename);
-		System.out.println(realPath);
-		filename = URLEncoder.encode(filename, "UTF-8");//�����ļ�����������
-		photoIn = new FileInputStream(realPath);
-		return "success";
 	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+	public long getContentLength() {
+		return contentLength;
+	}
+
+	public void setContentLength(long contentLength) {
+		this.contentLength = contentLength;
+	}
+
+	public String getContentDisposition() {
+		return contentDisposition;
+	}
+
+	public void setContentDisposition(String contentDisposition) {
+		this.contentDisposition = contentDisposition;
+	}
+
+	public InputStream getInputstream() {
+		return inputstream;
+	}
+
+	public void setInputstream(InputStream inputstream) {
+		this.inputstream = inputstream;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
 }

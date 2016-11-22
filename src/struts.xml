@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	
 	<constant name="struts.i18n.encoding" value="utf-8"></constant>
@@ -25,6 +25,12 @@
               <result name="success">/app/tpls/postpic.jsp</result>
     </action>   
     
+	 <action name="fileDownload" class="downLoadAction">
+	 	<result type="stream">
+            <param name="inputName">inputstream</param> 
+	 		<param name="bufferSize">40960</param>
+	 	</result>
+	 </action>
     
       <action name="upload" class="uploadAction" method="upload">
     		<interceptor-ref name="defaultStack">
@@ -40,19 +46,15 @@
     		
     </action>   
     
-    <action name="download" class="downLoadAction" method="download">
-    		<!-- 下载时由一个结果类型负责的 -->
-    		<result type="stream">
-    			<!-- 靠配置结果类型的参数 -->
-    			<param name="inputName">photoIn</param>
-    			<!-- 告知客户端以下载的方式打开 -->
-    			<!-- 动态获取下载的文件名：在该配置文件中使用OGNL表达式 。就相当于调用当前动作的getFilename方法-->
-    			<param name="contentDisposition">attachment;filename=${filename}</param>
-    			<!-- 告知客户端文件的MIME类型 -->
-    			<param name="contentType">application/octet-stream</param>
-    		</result>
-            
-    </action>   
+    
+    
+    
+    
+    
+    
+    
+    
+
     
 	 <action name="querycontent" class="allContentAction" method="query">
 	 	<result name="querysuccess">/front/index.jsp</result>

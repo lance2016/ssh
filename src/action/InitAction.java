@@ -1,11 +1,13 @@
-package action;
-
+﻿package action;
 import java.util.List;
 
 
+
 import javax.annotation.Resource;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+
 import service.IAllContentService;
 import service.INavService;
 import vo.AllContent;
@@ -44,7 +46,7 @@ public class InitAction {
 			AllContentList3=AllContentService.querybyparentid("Z2");//学生工作
 			AllContentList4=AllContentService.querybyparentid("Z3");//就业工作
 			AllContentList5=AllContentService.querybyparentid("Z4");//学术动态
-			
+		
 
 			return "querysuccess";
 		} catch (Exception e) {

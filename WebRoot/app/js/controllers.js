@@ -49,7 +49,6 @@ myApp.controller('xueyuannews',['$scope','$http','$state',
 			url:"/ssh/ajax/getNum.action",
 			params:{table:"AllContent",id:"Z0"}
 		}).success(function(data,status,headers,config){
-
 			data = eval("("+data+")"); 
 			data = angular.fromJson(data);
 			saveData = data;
@@ -856,7 +855,7 @@ myCtrls.controller('addnav',['$stateParams','$scope','$http','$state','msgBox',
 	$scope.parentid=$stateParams.id;
 	
 	 $scope.submit = function(){
-		 alert($scope.id+" "+$scope.name+" "+$scope.parentid+" "+$scope.link);
+		// alert($scope.id+" "+$scope.name+" "+$scope.parentid+" "+$scope.link);
 			$http({
 				method:'POST',
 				url:"/ssh/ajax/addnav.action",
