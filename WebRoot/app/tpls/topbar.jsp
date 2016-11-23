@@ -7,14 +7,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand">信息学院后台管理</a>
+        <a class="navbar-brand" style="font-size:2.2em">信息学院后台管理</a>
     </div>  
-    <ul class="nav navbar-nav" ng-controller='changeColor'>
+    <br/>
+     <br/>
+    <ul class="nav navbar-nav text-center" ng-controller='changeColor'>
         <li>
             <a ui-sref="index.indexconfig.welcome" ng-click="change($event)" class="a-color-active active">首页</a>
         </li>
         <li>
-            <a ui-sref="index.load" ng-click="change($event)" class="a-color">文章管理</a>
+            <a ui-sref="index.load" ng-click="change($event)" class="a-color">导航栏</a>
+        </li>
+         <li>
+            <a ui-sref="index.write" ng-click="change($event)" class="a-color">写文章</a>
         </li>
          <li>
             <a ui-sref="index.loadstatic" ng-click="change($event)" class="a-color">静态内容管理</a>
@@ -30,11 +35,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
      
        
-        <li style="margin-left:300px">
+        <li >
             <a  href="/ssh/init"> 前台首页 </a>
         </li>
         <li>
           <a id="exit" onclick="Exit()">注销</a>
         </li>
     </ul>
+  
 </nav>

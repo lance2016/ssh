@@ -56,7 +56,7 @@ public class UploadAction extends ActionSupport {
 	}
 	public String upload() throws IOException{
 		
-		System.out.println("---------------============="+name+":"+photoFileName+":"+photoContentType);
+	//System.out.println("---------------============="+name+":"+photoFileName+":"+photoContentType);
 		String storeDirectory = ServletActionContext.getServletContext().getRealPath("/files");
 		FileUtils.copyFile(photo, new File(storeDirectory,photoFileName));
 		System.out.println(name+photoContentType+"          "+storeDirectory);

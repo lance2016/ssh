@@ -25,6 +25,9 @@
               <result name="success">/app/tpls/postpic.jsp</result>
     </action>   
     
+    <action name="ImgUpload" class="imgUploadAction" method="imgUpload">
+		</action>
+		
 	 <action name="fileDownload" class="downLoadAction">
 	 	<result type="stream">
             <param name="inputName">inputstream</param> 
@@ -36,7 +39,7 @@
     		<interceptor-ref name="defaultStack">
     			<!-- 更改fileUpload拦截器的参数 -->
     			<param name="fileUpload.maximumSize">32217687</param>
-    			<param name="fileUpload.allowedExtensions">.jsp,.png,.zip,.7z,.txt,.ppt,.excel,.jpg,.pdf,.doc,.docx,.mp3,.mp4</param>
+    			<param name="fileUpload.allowedExtensions">.jsp,.png,.zip,.xls,.xlsx,.7z,.txt,.ppt,.jpg,.pdf,.doc,.docx,.mp3,.mp4</param>
     		</interceptor-ref>
     	
     		<result name="success" type="redirect" >

@@ -6,7 +6,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <h3>文章</h3>
-<a ui-sref="index.write"><button class="btn btn-primary">写文章</button></a>
 <div ng-controller='LoadArticle'>
 	 <select   class="form-control w200 mt10" ng-model="value" ng-change="LoadById(value)">
 					

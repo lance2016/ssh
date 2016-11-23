@@ -6,7 +6,10 @@
 CKEDITOR.editorConfig = function( config ) {
 	
 	config.image_previewText=' '; //预览区域显示内容
-	config.filebrowserImageUploadUrl= "http://192.168.1.57:8080/sdiia/ImgUpload.action"; //待会要上传的action或servlet
+	config.filebrowserImageUploadUrl = "localhost:8080/ssh/ImgUpload.action";
+	//config.filebrowserImageUploadUrl = "http://sloyf19174.jsp.jspee.com.cn/ssh/ImgUpload.action";
+	//config.filebrowserImageUploadUrl = "http://202.194.131.159/ssh/ImgUpload.action";
+	//config.filebrowserImageUploadUrl= "http://192.168.1.57:8080/sdiia/ImgUpload.action"; //待会要上传的action或servlet
 	
 	config.toolbarGroups = [
 		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
@@ -25,7 +28,7 @@ CKEDITOR.editorConfig = function( config ) {
 	];
 
 	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
-
+	
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 };
 

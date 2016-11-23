@@ -1,5 +1,6 @@
 ﻿package action;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -230,7 +231,26 @@ public class AllContentAction extends ActionSupport  {
 		public String delete() {
 			int id=Integer.parseInt(request.getParameter("id"));
 			try {
-				AllContentService.delete(id);
+				AllContentList=AllContentService.queryone(id);
+				System.out.println(AllContentList.get(0).getLink());
+			if(AllContentList.get(0).getLink()!="!"&&AllContentList.get(0).getLink()!="#")//判断是否要删除文件//
+				{
+				String relativePath = "/files";
+				String absolutePath = ServletActionContext.getServletContext().getRealPath(relativePath+"/"+AllContentList.get(0).getTitle());
+				System.out.println(absolutePath);
+				//取出文件的绝对路径，然后用File方法删除相应文件。
+				File file = new File(absolutePath);
+				if (file.exists()) {
+				    file.delete();
+				}
+				
+				
+				}
+						AllContentService.delete(id);
+			
+				//System.out.println(AllContentList.get(0).getTitle());
+		
+				
 				result="success";
 				return "success";
 			} catch (Exception e) {
