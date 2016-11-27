@@ -132,6 +132,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(0).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
+				   
 				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(0).getParentid() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
@@ -142,7 +143,7 @@
 			<table class="xueyuannews">
 				<ul>
 					<c:forEach var="m" items="${allContentList1}">
-					<tr><td align="left" width="300px"><li><a href="qf_query?id=${m.id}" class="xueyuana"><div class="xueyuandiv"
+					<tr><td align="left" width="300px"><li><a href="qf_query?id=${m.id}&add=${navTitleList.get(0).getName()}&leftid=${navTitleList.get(0).getId()}" class="xueyuana"><div class="xueyuandiv"
 					
 							<c:if test="${m.important==1}">
 										style="color:red";
@@ -165,7 +166,8 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(1).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(1).getParentid() }&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_changequery?leftid=${navTitleList.get(1).getId() }&pagenum=1" target="_self">
+				
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -177,7 +179,7 @@
 			<table class="inform">		
 				<ul>
 					<c:forEach var="inform" items="${allContentList2}">
-					<tr><td align="left" width="90%"><li><a href="qf_query?id=${inform.id}" class="xueyuana"><div class="otherdiv"
+					<tr><td align="left" width="90%"><li><a href="qf_query?id=${inform.id}&add=${navTitleList.get(1).getName()}&leftid=${navTitleList.get(1).getId()}" class="xueyuana"><div class="otherdiv"
 						<c:if test="${inform.important==1}">
 										style="color:red";
 									</c:if>
@@ -199,7 +201,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(2).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(2).getParentid() }&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_changequery?leftid=${navTitleList.get(2).getId() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -209,7 +211,7 @@
 			<table class="studentwork">		
 				<ul>
 					<c:forEach var="s" items="${allContentList3}">
-					<tr><td align="left" width="200px"><li><a href="qf_query?id=${s.id}" class="xueyuana"><div class="otherdiv"
+					<tr><td align="left" width="200px"><li><a href="qf_query?id=${s.id}&add=${navTitleList.get(2).getName()}&leftid=${navTitleList.get(2).getId()}" class="xueyuana"><div class="otherdiv"
 						<c:if test="${s.important==1}">
 										style="color:red";
 									</c:if>
@@ -230,7 +232,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(3).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(3).getParentid() }&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_changequery?leftid=${navTitleList.get(3).getId() }&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -242,7 +244,7 @@
 					<tr>
 						<td align="left" width="200px">
 							<li>
-							<a href="qf_query?id=${work.id}" class="xueyuana">
+							<a href="qf_query?id=${work.id}&add=${navTitleList.get(3).getName()}&leftid=${navTitleList.get(3).getId()}" class="xueyuana">
 								<div class="otherdiv" 
 									<c:if test="${work.important==1}">
 										style="color:red";
@@ -268,7 +270,7 @@
 				    <td background="${pageContext.request.contextPath}/front/images/mainmiddle1_2.gif" class="biaoti1">${navTitleList.get(4).getName()}</td>
 				    <td width=""><img src="${pageContext.request.contextPath}/front/images/mainmiddle1_3.gif" width="106" height="23"></td>
 				    <td width="">
-				    	<div align="right"><a href="qsf_query?id=${navTitleList.get(4).getParentid() }&pagenum=1" target="_self">
+				    	<div align="right"><a href="qsf_changequery?leftid=${navTitleList.get(4).getId()}&pagenum=1" target="_self">
 				    		<img src="${pageContext.request.contextPath}/front/images/more.gif" border="0"></a>
 				    	</div>
 				    </td>
@@ -280,7 +282,7 @@
 					<tr>
 						<td align="left" width="200px">
 							<li>
-								<a href="qf_query?id=${xueshu.id}" class="xueyuana">
+								<a href="qf_query?id=${xueshu.id}&add=${navTitleList.get(4).getName()}&leftid=${navTitleList.get(4).getId()}" class="xueyuana">
 									<div class="otherdiv" 
 										<c:if test="${xueshu.important==1}">
 											style="color:red";

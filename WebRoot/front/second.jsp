@@ -115,12 +115,12 @@
 						<c:if test="${r.link!='1'&&r.link!='#'}">
 							<li><a href="${r.link}">${r.title }</a></li>
 						</c:if>
-							<!--<a href="qf_query?id=${r.id}&add=${locationList.get(0).getName()}&leftid=${navLeftList.get(0).getId()}">  </a>-->
+						
 						</div>
 					</c:forEach>				
 				</ul>
 			
-				<!-- 分页 -->
+			
 						<c:if test="${allContentList!=null}">
 							<c:if test="${allContentList.get(0).getLink()!='#'}">
 										共${pageCount }页,
@@ -139,15 +139,7 @@
 						<c:if test="${ allContentList==null}">
 							<p style="color:red">暂无记录</p>
 						</c:if>
-			<!-- 	<div ng-app="myApp" >
-      				  <section ng-controller="pageDemo" class="col-md-9" >
-           		 <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages">
-           		 </pagination> 
-  					
-          	  <pre>共{{totalItems}}条 当前：{{bigCurrentPage}}/{{numPages}}</pre>
-      				  </section>
-
-				</div> -->
+			
  				 
 			</div>
 		</div>

@@ -87,8 +87,8 @@ private File upload;
     os.close();
     out.println("<script type=\"text/javascript\">");
     out.println("window.parent.CKEDITOR.tools.callFunction(" + callback + 
-      ",'" + request.getContextPath() + "/uploadimg/" + fileName + "','')");
-   // System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++="+fileName);
+      ",'" +  request.getContextPath()+"/uploadimg/" + fileName + "','')");
+  
     out.println("</script>");
     return null;
   }

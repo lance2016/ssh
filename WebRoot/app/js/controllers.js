@@ -95,7 +95,7 @@ myApp.controller('xueyuannews',['$scope','$http','$state',
 						url:'/ssh/ajax/delete.action',
 						params: {id:id}
 					}).success(function(data,status,headers,config){
-						$scope.load();
+						$scope.getAll();
 						alertify.success("success");						
 					}).error(function(data,status,headers,config){
 						alertify.error("error,请检查网络连接");
@@ -172,7 +172,7 @@ myApp.controller('inform',['$scope','$http','$state',
 						url:'/ssh/ajax/delete.action',
 						params: {id:id}
 					}).success(function(data,status,headers,config){
-						$scope.load();
+						$scope.getAll();
 						alertify.success("success");						
 					}).error(function(data,status,headers,config){
 						alertify.error("error,请检查网络连接");
@@ -225,7 +225,6 @@ $scope.getnum = function(){
 }
 
 $scope.getnum();
-
 		$scope.getAll = function(){
 			$http({
 				method:'POST',
@@ -260,7 +259,7 @@ $scope.getnum();
 						url:'/ssh/ajax/delete.action',
 						params: {id:id}
 					}).success(function(data,status,headers,config){
-						$scope.load();
+						$scope.getAll();
 						alertify.success("success");						
 					}).error(function(data,status,headers,config){
 						alertify.error("error,请检查网络连接");
@@ -338,7 +337,7 @@ $scope.getnum();
 						url:'/ssh/ajax/delete.action',
 						params: {id:id}
 					}).success(function(data,status,headers,config){
-						$scope.load();
+						$scope.getAll();
 						alertify.success("success");						
 					}).error(function(data,status,headers,config){
 						alertify.error("error,请检查网络连接");
@@ -415,7 +414,7 @@ $scope.getnum();
 					url:'/ssh/ajax/delete.action',
 					params: {id:id}
 				}).success(function(data,status,headers,config){
-					$scope.load();
+					$scope.getAll();
 					alertify.success("success");						
 				}).error(function(data,status,headers,config){
 					alertify.error("error,请检查网络连接");
